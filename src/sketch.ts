@@ -1,5 +1,5 @@
 //---- GLOBAL VARIABLES ----//
-// let game: Game;
+let game: Game;
 
 /**
  * Built in preload function in P5
@@ -23,7 +23,7 @@ function setup() {
     frameRate(60);
     // noCursor();
     
-    // game = new Game();
+    game = new Game();
 }
 
 /**
@@ -32,14 +32,16 @@ function setup() {
  * you created in the setup function above
  */
 function draw() {
+    /*
     background('blue');
     fill('green');
     stroke('white');
     strokeWeight(10);
     circle(width * .5, height * .5, width * 0.2);
-
-    // game.update();
-    // game.draw();
+    */
+   
+    game.update();
+    game.draw();
 }
 
 

@@ -1,0 +1,4 @@
+class CountDownToStart {
+    update() {}
+    draw() {}
+}

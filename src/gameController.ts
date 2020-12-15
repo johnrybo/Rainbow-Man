@@ -1,0 +1,4 @@
+class GameController {
+    update() {}
+    draw() {}
+}

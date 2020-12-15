@@ -1,0 +1,4 @@
+class GameOverMenu {
+    update() {}
+    draw() {}
+}
