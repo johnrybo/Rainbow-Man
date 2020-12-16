@@ -1,4 +1,0 @@
-class Wall {
-    update() {}
-    draw() {}
-}

@@ -12,7 +12,7 @@ class Game implements IGameState {
         this.gameController = new GameController();
 
         // level -- gamecontroller
-        this.gameState = "mainmenu";
+        this.gameState = "play";
     }
 
     public update() {
@@ -38,7 +38,8 @@ class Game implements IGameState {
         }
         if (this.gameState === "play") {
             this.gameController.draw();
-            this.countDownToStart.draw();
+
+            // this.countDownToStart.draw();
         }
     }
 }

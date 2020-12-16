@@ -1,4 +1,0 @@
-class Character {
-    update() {}
-    draw() {}
-}
