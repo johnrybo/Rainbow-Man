@@ -1,0 +1,7 @@
+class Character {
+    update() { }
+
+    draw() {
+        
+    }
+}
