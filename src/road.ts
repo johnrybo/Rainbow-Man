@@ -1,0 +1,4 @@
+class Road {
+    update() {}
+    draw() {}
+}
