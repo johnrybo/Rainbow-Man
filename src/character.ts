@@ -5,6 +5,7 @@ class Character {
     private speed: number;
 
     constructor() {
+        
         this.x = width / 2;
         this.y = height - 150;
         this.speed = 30;
