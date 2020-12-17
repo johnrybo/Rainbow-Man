@@ -1,5 +1,5 @@
 class Wall {
-    private y: number;
+    public y: number;
     private wallWidth: number;
     
 

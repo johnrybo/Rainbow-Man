@@ -1,7 +1,8 @@
 class Character {
-  private x: number;
-  private y: number;
+  public x: number;
+  public y: number;
   private speed: number;
+  
 
   constructor() {
     this.x = width / 2;
