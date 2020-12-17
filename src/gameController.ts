@@ -1,46 +1,46 @@
 class GameController {
-    
+
     private road: Road;
     private wall: Wall;
     private character: Character;
     private highScore: HighScore;
+    private previousCollision: boolean;
 
     constructor() {
         this.road = new Road();
         this.wall = new Wall();
         this.character = new Character();
         this.highScore = new HighScore();
+        this.previousCollision = false;
     }
 
     update() {
         this.road.update();
         this.wall.update();
         this.character.update();
+        this.checkWallCollision();
     }
-    
+
     draw() {
         this.road.draw();
         this.wall.draw();
         this.character.draw();
-        this.checkWallCollision();
     }
 
     private checkWallCollision() {
 
-        let checkOnce = false;
 
         if (this.character.y < this.wall.y) {
-    
-            checkOnce = true;
 
+            if(!this.previousCollision) {
+                console.log(this.highScore.score ++)
+                console.log(this.wall.color)
+            }
+            
+            this.previousCollision = true;
+            
         } else {
-            checkOnce = false;
+            this.previousCollision = false;
         }
-
-        if (checkOnce) {
-            console.log(this.highScore.score ++)
-        }
-
     }
-
 }

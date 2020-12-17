@@ -3,7 +3,7 @@ class HighScore {
     public score: number;
 
     constructor() {
-        this.score = 0;
+        this.score = 1;
     }
     
     update() { }
