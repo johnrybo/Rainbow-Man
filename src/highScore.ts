@@ -11,7 +11,7 @@ class HighScore {
     draw() {
         textSize(width / 40);
         // textAlign(CENTER, CENTER);
-        text("Poäng: " + this.score, 50, 50);
+        text("Score: " + this.score, 50, 50);
     }
 
 }

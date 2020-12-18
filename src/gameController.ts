@@ -35,14 +35,15 @@ class GameController {
     private checkWallCollision() {
 
         if (this.character.y < this.wall.y && this.wall.color !== this.character.characterColor) {
-            this.wall.y = this.character.y;
+            // this.wall.y = this.character.y;
+            noLoop();
         }
     }
 
     // Uppdaterar färgen på gubben utifrån highScore
     private updateColor() {
         
-        if (this.highScore.score >= 5 && this.highScore.score <= 10) {
+        if (this.highScore.score >= 2 && this.highScore.score <= 10) {
 
             this.character.characterImg = characterImgGreen;
             this.character.characterColor = 'green';
