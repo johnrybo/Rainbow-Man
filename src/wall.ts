@@ -1,11 +1,13 @@
 class Wall {
-    private y: number;
+    public y: number;
     private wallWidth: number;
+    public color: string;
     
 
     constructor() {
         this.y = height * .1;
-        this.wallWidth = width * .4 
+        this.wallWidth = width * .4
+        this.color = 'red';
     }
 
     public update() {
@@ -20,7 +22,7 @@ class Wall {
 
     /* Moves wall */
     private moveWalls() {
-        fill('red');
+        fill(this.color);
         noStroke();
         rect(width * .5, this.y, this.wallWidth, 100);
         rectMode(CENTER) 
