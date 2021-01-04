@@ -34,7 +34,7 @@ class GameController {
     // samma när de har samma y-position
     private checkWallCollision() {
 
-        if (this.character.y < this.wall.y && this.wall.color !== this.character.characterColor) {
+        if (this.character.y < this.wall.yWallPosition && this.wall.color !== this.character.characterColor) {
             // this.wall.y = this.character.y;
             noLoop();
         }
@@ -57,7 +57,7 @@ class GameController {
 
     // Uppdaterar score baserat på antal väggar som har passerat gubben
     private updateHighScore() {
-        if (this.character.y < this.wall.y) {
+        if (this.character.y < this.wall.yWallPosition) {
 
             if (!this.previousCollision) {
                 this.highScore.score++
