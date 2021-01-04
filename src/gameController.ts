@@ -43,16 +43,20 @@ class GameController {
     // Uppdaterar färgen på gubben utifrån highScore
     private updateColor() {
         
-        if (this.highScore.score >= 2 && this.highScore.score <= 10) {
+        if (this.highScore.score >= 2 && this.highScore.score <= 10 && this.wall.yWallPosition < 200) {
 
+            
             this.character.characterImg = characterImgGreen;
             this.character.characterColor = 'green';
             // console.log(this.character.characterColor)
-        } else {
+        } 
+        
+        /* else {
             this.character.characterImg = characterImgRed;
             this.character.characterColor = 'red';
+            console.log(this.wall.yWallPosition);
             // console.log(this.character.characterColor)
-        }
+        } */
     }
 
     // Uppdaterar score baserat på antal väggar som har passerat gubben

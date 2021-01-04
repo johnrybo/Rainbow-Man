@@ -10,7 +10,7 @@ class Character {
     this.y = height - 150;
     this.speed = 30;
     this.characterImg = characterImgRed;
-    this.characterColor = ''
+    this.characterColor = 'red';
   }
 
   update() {}
