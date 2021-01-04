@@ -1,7 +1,8 @@
 //---- GLOBAL VARIABLES ----//
 let game: Game;
 // let characterImg: p5.Image;
-let characterImg: p5.Image;
+let characterImgGreen: p5.Image;
+let characterImgRed: p5.Image;
 
 /**
  * Built in preload function in P5
@@ -16,7 +17,8 @@ function preload() {
     // const xmlData = loadXML('../assets/images/rainbowMan.svg');
     // characterImg = loadImage(xmlData as any)
 
-    characterImg = loadImage('../assets/images/rainbowMan.svg');
+    characterImgGreen = loadImage('../assets/images/rainbowManGreen.svg');
+    characterImgRed = loadImage('../assets/images/rainbowManRed.svg');
 }
 
 /**
