@@ -1,19 +1,23 @@
 class Character {
-  private x: number;
-  private y: number;
+  public x: number;
+  public y: number;
   private speed: number;
+  public characterImg: p5.Image;
+  public characterColor: string;
 
   constructor() {
     this.x = width / 2;
     this.y = height - 150;
     this.speed = 30;
+    this.characterImg = characterImgRed;
+    this.characterColor = ''
   }
 
   update() {}
 
   draw() {
     imageMode(CENTER);
-    image(characterImg, this.x, this.y);
+    image(this.characterImg, this.x, this.y);
     this.moveCharacter();
   }
 
@@ -30,14 +34,4 @@ class Character {
       }
     }
   }
-  //xxx
-  /*
-    private hitBox() {
-        if (this.y === wall.y) {
-            // game over
-        } else if (this.y === item.y) {
-            // add item
-        }
-    }
-    */
 }

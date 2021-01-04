@@ -1,6 +1,8 @@
 //---- GLOBAL VARIABLES ----//
 let game: Game;
-let characterImg: any;
+// let characterImg: p5.Image;
+let characterImgGreen: p5.Image;
+let characterImgRed: p5.Image;
 
 /**
  * Built in preload function in P5
@@ -11,7 +13,12 @@ function preload() {
     // Tyvärr har jag inte fått till den globala typningen för
     // inladdningen av ljud men fungerar bra enligt nedan..
     // sound = (window as any).loadSound('../assets/mySound.wav');
-    characterImg = loadImage('../assets/images/character.png');
+    
+    // const xmlData = loadXML('../assets/images/rainbowMan.svg');
+    // characterImg = loadImage(xmlData as any)
+
+    characterImgGreen = loadImage('../assets/images/rainbowManGreen.svg');
+    characterImgRed = loadImage('../assets/images/rainbowManRed.svg');
 }
 
 /**
