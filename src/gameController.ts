@@ -8,7 +8,7 @@ class GameController {
 
     constructor() {
         this.road = new Road();
-        this.wall = new Wall();
+        this.wall = new Wall(3);
         this.character = new Character();
         this.highScore = new HighScore();
         this.previousCollision = false;
