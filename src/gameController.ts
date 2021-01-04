@@ -45,7 +45,6 @@ class GameController {
         
         if (this.highScore.score >= 2 && this.highScore.score <= 10 && this.wall.yWallPosition < 200) {
 
-            
             this.character.characterImg = characterImgGreen;
             this.character.characterColor = 'green';
             // console.log(this.character.characterColor)
@@ -65,6 +64,10 @@ class GameController {
 
             if (!this.previousCollision) {
                 this.highScore.score++
+                if (this.highScore.score > this.highScore.highScoreLS) {
+                    this.highScore.highScoreLS = this.highScore.score;
+                    storeItem('highScore', this.highScore.highScoreLS);
+                }
                 // console.log(this.highScore.score);
             }
 
