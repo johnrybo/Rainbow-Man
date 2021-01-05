@@ -3,6 +3,11 @@ let game: Game;
 // let characterImg: p5.Image;
 let characterImgGreen: p5.Image;
 let characterImgRed: p5.Image;
+let characterImgBlue: p5.Image;
+let characterImgYellow: p5.Image;
+let characterImgIndigo: p5.Image;
+let characterImgViolet: p5.Image;
+let characterImgOrange: p5.Image;
 
 /**
  * Built in preload function in P5
@@ -19,6 +24,11 @@ function preload() {
 
     characterImgGreen = loadImage('../assets/images/rainbowManGreen.svg');
     characterImgRed = loadImage('../assets/images/rainbowManRed.svg');
+    characterImgBlue = loadImage ('../assets/images/rainbowManBlue.svg')
+    characterImgYellow = loadImage ('../assets/images/rainbowManYellow.svg')
+    characterImgIndigo = loadImage ('../assets/images/rainbowManIndigo.svg')
+    characterImgViolet = loadImage ('../assets/images/rainbowManViolet.svg')
+    characterImgOrange = loadImage ('../assets/images/rainbowManOrange.svg')
 }
 
 /**

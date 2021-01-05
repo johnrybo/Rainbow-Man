@@ -43,19 +43,51 @@ class GameController {
     // Uppdaterar färgen på gubben utifrån highScore
     private updateColor() {
         
-        if (this.highScore.score >= 2 && this.highScore.score <= 10 && this.wall.yWallPosition < 200) {
+        let characterImgColors = [characterImgBlue, characterImgGreen, characterImgRed];
 
-            this.character.characterImg = characterImgGreen;
-            this.character.characterColor = 'green';
-            // console.log(this.character.characterColor)
-        } 
-        
-        /* else {
-            this.character.characterImg = characterImgRed;
-            this.character.characterColor = 'red';
-            console.log(this.wall.yWallPosition);
-            // console.log(this.character.characterColor)
-        } */
+        if (this.highScore.score >= 2 && this.highScore.score <= 4 && this.wall.yWallPosition < 150) {
+
+            characterImgColors.push(characterImgYellow);
+            this.character.characterImg = random(characterImgColors)
+            this.matchColors();
+
+        } else if (this.highScore.score >= 5 && this.highScore.score <= 7 && this.wall.yWallPosition < 150) {
+
+            characterImgColors.push(characterImgIndigo);
+            this.character.characterImg = random(characterImgColors)
+            this.matchColors();
+
+        } else if (this.highScore.score >= 8 && this.highScore.score <= 10 && this.wall.yWallPosition < 150) {
+
+            characterImgColors.push(characterImgOrange);
+            this.character.characterImg = random(characterImgColors)
+            this.matchColors();
+
+        } else if (this.highScore.score >= 11 && this.wall.yWallPosition < 150) {
+
+            characterImgColors.push(characterImgViolet);
+            this.character.characterImg = random(characterImgColors)
+            this.matchColors();            
+        }
+    }
+
+    // Anger samma färg på characterColor som finns i characterImg
+    private matchColors() {
+        if (this.character.characterImg == characterImgBlue) {
+            this.character.characterColor = 'blue'
+        } else if (this.character.characterImg == characterImgRed) {
+            this.character.characterColor = 'red'
+        } else if (this.character.characterImg == characterImgGreen) {
+            this.character.characterColor = 'green'
+        } else if (this.character.characterImg == characterImgYellow) {
+            this.character.characterColor = 'yellow'
+        } else if (this.character.characterImg == characterImgIndigo) {
+            this.character.characterColor = 'indigo'
+        } else if (this.character.characterImg == characterImgViolet) {
+            this.character.characterColor = 'violet'
+        } else if (this.character.characterImg == characterImgOrange) {
+            this.character.characterColor = 'orange'
+        }
     }
 
     // Uppdaterar score baserat på antal väggar som har passerat gubben
