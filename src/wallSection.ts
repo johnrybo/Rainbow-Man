@@ -1,39 +1,35 @@
 class WallSection {
-
     private color: string;
-
-    // private totalWallWidth: number;
-    // private sectionWidth: number;
-    // private sectionHeight: number;
-    // private firstSectionPosition: number;
+    private xPosition: number; 
     
     
     constructor(color: string) {
         this.color = color;
-        // this.totalWallWidth = width * .4;
-        // this.sectionWidth = this.totalWallWidth / this.totalSections;
-        // this.sectionHeight = 100;
-        // this.firstSectionPosition = width * .3 + this.sectionWidth / 2;
+        this.xPosition = this.handleXPosition()
     }
     
-    public update(){
-        // this.createWallSections(); 
+    public update(){       
     }
 
-    public draw(parentPositionY: number, parentWidth: number, parentHeight: number ) {
+    public draw(parentPositionY: number, parentWidth: number, parentHeight: number, parentTotalSections: number, index: number) {
         push();
         fill(this.color);
         noStroke();
-        rectMode(CENTER);
         
-        rect(width / 2, parentPositionY, parentWidth / 3, parentHeight);
+        rectMode(CORNER);
+        this.xPosition = this.handleXPosition(parentWidth, parentTotalSections, index);
+        const yPosition = parentPositionY - parentHeight / 2;
+        rect(this.xPosition, yPosition, parentWidth / parentTotalSections, parentHeight);
         pop();
     }
 
-    /* Syfte: Berätta för programmet vilken vägg som ska byggas.
-    En array som består av två objekt, vägg 1 och vägg 2.
-    CreateWallSection() kollar om det är vägg 1 är true/false. Om true, bygg vägg 1, annars vägg 2.
-    När antal sektioner för vägg 1 är skapta, ska createWallSection ändra true till false och börja bygga vägg två. 
-    */
+    private handleXPosition(parentWidth: number, parentTotalSections:number, index: number) {     
+        const screenCenter = width / 2;
+        const wallSectionWidth = parentWidth / parentTotalSections;
+        const parentX = screenCenter - parentWidth / 2;
+        const x = parentX + wallSectionWidth * index;
+
+        return x
+    }
 }
-// const randomColor = Math.trunc(Math.random() * 7) + 1;                                                                                                                                                
+                                                                                                                                              

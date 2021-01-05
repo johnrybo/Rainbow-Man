@@ -12,56 +12,44 @@ class Wall {
         this.totalSections = totalSections;
         this.wallSections = this.createWallSections();
         this.yWallPosition = height * .05;
-        this.wallWidth = width * .4;        
-        this.totalSections = 3;
+        this.wallWidth = width * .4;
         this.wallHeight = 100;
 
         // enbart för test
         this.color = 'red';
     }
 
-    private createWallSections(): WallSection[] {
-        // todo: should come from level object
-        const colors = ['red', 'blue', 'green', 'yellow']
-        shuffle(colors, true)
-        
-        const sections = [];
-        for (let i = 0; i < this.totalSections; i++) {
-            sections.push(new WallSection(colors[i]))
-        }
-        return sections;
-    }
-
     public update() {
-        // this.wallSection.update();
         this.moveWalls();
         this.changeWallSize();
     }
 
     public draw() {
         push()
-        this.drawDebuggWall();
-
-        for (const wallSection of this.wallSections) {
-            wallSection.draw(this.yWallPosition, this.wallWidth, this.wallHeight);
+        for (let i = 0; i < this.wallSections.length; i++) {
+            const wallSection = this.wallSections[i]
+            wallSection.draw(this.yWallPosition, this.wallWidth, this.wallHeight, this.totalSections, i);
         }
-
         pop();
     }
 
-    private drawDebuggWall() {
-        fill('red');
-        rectMode(CENTER)
-        noStroke();
-        rect(width * .5, this.yWallPosition, this.wallWidth, this.wallHeight);
+    // Create wall sections and add color
+    private createWallSections(): WallSection[] {
+        // todo: colors should come from level object
+        const colors = ['red', 'blue', 'green', 'yellow']
+        shuffle(colors, true)
+
+        const sections = [];
+        for (let i = 0; i < this.totalSections; i++) {
+            sections.push(new WallSection(colors[i]))
+        }
+
+        return sections;
     }
 
-    /* Moves wall */
+    /* Move walls */
     private moveWalls() {
-        this.yWallPosition = this.yWallPosition + 1;
-        if (this.yWallPosition > height) {
-            this.yWallPosition = height * .1;
-          }       
+        this.yWallPosition = this.yWallPosition + 1;      
     }
 
     /* Change wall size when moving */

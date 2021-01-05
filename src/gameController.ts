@@ -1,22 +1,42 @@
 class GameController {
 
     private road: Road;
-    private wall: Wall;
+    private walls: Wall[];
     private character: Character;
     private highScore: HighScore;
     private previousCollision: boolean;
 
     constructor() {
         this.road = new Road();
-        this.wall = new Wall(3);
+        this.walls = [];
         this.character = new Character();
         this.highScore = new HighScore();
         this.previousCollision = false;
+
+        this.addWall();
+        setInterval(() => this.addWall(), 8000);
+    }
+
+    private addWall() {
+        this.walls.push(new Wall(3));
+    }
+
+    private removeWall() {
+        for (const wall of this.walls) {
+            if (wall.yWallPosition > height) {
+                // Delete wall from array to preserve memory
+                const index = this.walls.indexOf(wall);
+                this.walls.splice(index, 1);
+            } 
+        }        
     }
 
     update() {
         this.road.update();
-        this.wall.update();
+        for (const wall of this.walls) {
+            wall.update();
+        }
+        this.removeWall();
         this.character.update();
         this.checkWallCollision();
         this.updateHighScore();
@@ -25,7 +45,9 @@ class GameController {
 
     draw() {
         this.road.draw();
-        this.wall.draw();
+        for (const wall of this.walls) {
+            wall.draw();
+        }
         this.character.draw();
         this.highScore.draw();
     }
@@ -34,9 +56,10 @@ class GameController {
     // samma när de har samma y-position
     private checkWallCollision() {
 
-        if (this.character.y < this.wall.yWallPosition && this.wall.color !== this.character.characterColor) {
+        // Todo: Skapa loop
+        // if (this.character.y < this.wall.yWallPosition && this.wall.color !== this.character.characterColor) {
             // this.wall.y = this.character.y;
-            noLoop();
+            // noLoop();
         }
     }
 
@@ -92,6 +115,9 @@ class GameController {
 
     // Uppdaterar score baserat på antal väggar som har passerat gubben
     private updateHighScore() {
+
+        // Todo: Skapa for loop
+        /*
         if (this.character.y < this.wall.yWallPosition) {
 
             if (!this.previousCollision) {
@@ -102,11 +128,11 @@ class GameController {
                 }
                 // console.log(this.highScore.score);
             }
+             this.previousCollision = true;
 
-            this.previousCollision = true;
-
-        } else {
-            this.previousCollision = false;
-        }
+         } else {
+             this.previousCollision = false;
+         }
+         */
     }
 }
