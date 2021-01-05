@@ -4,7 +4,9 @@ class Wall {
     private wallWidth: number;
     private totalSections: number;
     private wallHeight: number;
-    
+
+    // enbart för test
+    public color: string;
 
     constructor(totalSections: number) {
         this.totalSections = totalSections;
@@ -12,6 +14,9 @@ class Wall {
         this.yWallPosition = height * .05;
         this.wallWidth = width * .4;
         this.wallHeight = 100;
+
+        // enbart för test
+        this.color = 'red';
     }
 
     public update() {
