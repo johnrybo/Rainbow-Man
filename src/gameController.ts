@@ -4,14 +4,14 @@ class GameController {
     private walls: Wall[];
     private character: Character;
     private highScore: HighScore;
-    private previousCollision: boolean;
+    // private previousCollision: boolean;
 
     constructor() {
         this.road = new Road();
         this.walls = [];
         this.character = new Character();
         this.highScore = new HighScore();
-        this.previousCollision = false;
+        // this.previousCollision = false;
 
         this.addWall();
         setInterval(() => this.addWall(), 8000);
@@ -57,10 +57,13 @@ class GameController {
     private checkWallCollision() {
 
         // Todo: Skapa loop
-        // if (this.character.y < this.wall.yWallPosition && this.wall.color !== this.character.characterColor) {
-            // this.wall.y = this.character.y;
-            // noLoop();
+
+        /*
+        if (this.character.y < this.wall.yWallPosition && this.wall.color !== this.character.characterColor) {
+            this.wall.y = this.character.y;
+            noLoop();
         }
+        */
     }
 
     // Uppdaterar färgen på gubben utifrån highScore
