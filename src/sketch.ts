@@ -9,6 +9,10 @@ let characterImgIndigo: p5.Image;
 let characterImgViolet: p5.Image;
 let characterImgOrange: p5.Image;
 
+let song: p5.SoundFile;
+let collisionSound: p5.SoundFile;
+let itemsSound: p5.SoundFile;
+
 /**
  * Built in preload function in P5
  * This is a good place to load assets such as
@@ -18,7 +22,9 @@ function preload() {
     // Tyvärr har jag inte fått till den globala typningen för
     // inladdningen av ljud men fungerar bra enligt nedan..
     // sound = (window as any).loadSound('../assets/mySound.wav');
-    
+    song = loadSound('../assets/music/rainbowMan.wav');
+    collisionSound = loadSound('../assets/soundeffects/collision.wav');
+    itemsSound = loadSound('../assets/soundeffects/items.wav');
     // const xmlData = loadXML('../assets/images/rainbowMan.svg');
     // characterImg = loadImage(xmlData as any)
 
