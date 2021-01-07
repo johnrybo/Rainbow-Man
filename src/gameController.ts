@@ -48,7 +48,6 @@ class GameController {
         this.updateHighScore();
         this.updateColor();
         this.levelUp();
-        
     }
 
     draw() {
@@ -63,45 +62,74 @@ class GameController {
     // Stoppar väggen från att fortsätta röra sig om väggens färg och gubbens färg inte är
     // samma när de har samma y-position
     private checkWallCollision() {
+        
+        const wallSize = this.walls.length;
 
-        // Todo: Skapa loop
-        for (const wall of this.walls) {
-            if (this.character.y < wall.yWallPosition && wall.color !== this.character.characterColor) {
-                wall.yWallPosition = this.character.y;
-                noLoop();
+        if (wallSize == 2) {
+
+            const currentWall = this.walls[0];
+
+            // Kollision har skett
+            if (this.character.y < currentWall.yWallPosition) {
+                
+                let collidedWallSection = null;
+
+                // ta ut vilken färg på vilken x position krock skett på
+                switch(true) {
+                    case this.character.x < currentWall.wallSections[1].xPosition:
+                        collidedWallSection = currentWall.wallSections[0];
+                        break;
+                    case this.character.x > currentWall.wallSections[1].xPosition &&
+                        this.character.x < currentWall.wallSections[2].xPosition:
+                        collidedWallSection = currentWall.wallSections[1];
+                        break;
+                    case this.character.x > currentWall.wallSections[2].xPosition:
+                        collidedWallSection = currentWall.wallSections[2];
+                        break;
+                }
+
+                if (this.character.characterColor !== collidedWallSection.color) {
+                    noLoop();
+                } else {
+                    this.updateHighScore();
+                    this.walls.shift();
+                    this.updateColor();
+                }
+                
             }
-        }   
+        }
     }
+    
 
     // Uppdaterar färgen på gubben utifrån highScore
     private updateColor() {
-        for (const wall of this.walls) {
+        let characterImgColors = [characterImgYellow, characterImgGreen, characterImgRed];
         
-        let characterImgColors = [characterImgBlue, characterImgGreen, characterImgRed];
+        for (const wall of this.walls) {
+            if (this.highScore.score >= 2 && this.highScore.score <= 4 && wall.yWallPosition < 150) {
 
-        if (this.highScore.score >= 2 && this.highScore.score <= 4 && wall.yWallPosition < 150) {
+                characterImgColors.push(characterImgYellow);
+                this.character.characterImg = random(characterImgColors)
+                this.matchColors();
 
-            characterImgColors.push(characterImgYellow);
-            this.character.characterImg = random(characterImgColors)
-            this.matchColors();
+            } else if (this.highScore.score >= 5 && this.highScore.score <= 7 && wall.yWallPosition < 150) {
+            
+                characterImgColors.push(characterImgIndigo);
+                this.character.characterImg = random(characterImgColors)
+                this.matchColors();
 
-        } else if (this.highScore.score >= 5 && this.highScore.score <= 7 && wall.yWallPosition < 150) {
+            } else if (this.highScore.score >= 8 && this.highScore.score <= 10 && wall.yWallPosition < 150) {
 
-            characterImgColors.push(characterImgIndigo);
-            this.character.characterImg = random(characterImgColors)
-            this.matchColors();
+                characterImgColors.push(characterImgOrange);
+                this.character.characterImg = random(characterImgColors)
+                this.matchColors();
 
-        } else if (this.highScore.score >= 8 && this.highScore.score <= 10 && wall.yWallPosition < 150) {
+            } else if (this.highScore.score >= 11 && wall.yWallPosition < 150) {
 
-            characterImgColors.push(characterImgOrange);
-            this.character.characterImg = random(characterImgColors)
-            this.matchColors();
-
-        } else if (this.highScore.score >= 11 && wall.yWallPosition < 150) {
-
-            characterImgColors.push(characterImgViolet);
-            this.character.characterImg = random(characterImgColors)
-            this.matchColors();            
+                characterImgColors.push(characterImgViolet);
+                this.character.characterImg = random(characterImgColors)
+                this.matchColors();            
+            }
         }
     }
 }
@@ -127,9 +155,7 @@ class GameController {
 
     // Uppdaterar score baserat på antal väggar som har passerat gubben
     private updateHighScore() {
-
-        // Todo: Skapa for loop
-        
+     
         for (const wall of this.walls) {
         if (this.character.y < wall.yWallPosition) {
 
@@ -146,6 +172,7 @@ class GameController {
 
          } else {
              this.previousCollision = false;
+             break;
          }
          
     }
@@ -158,4 +185,3 @@ class GameController {
         }
     }
 }
-
