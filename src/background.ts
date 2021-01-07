@@ -1,33 +1,36 @@
 class Background {
-    public background : Background[];
-    public totalColors : number; 
-    private backgroundWidth: number;
-    private backgroundHeight: number;
+    starting background : Backgrounds[0]; // the first image from the array
+    private backgroundImg : Backgrounds[]; //an array of background images will be made
+    public backgroundWidth: number;
+    public backgroundHeight: number;
     
 
-    constructor (totalColors : number) {
-        this.totalColors = totalColors;
-        this.background = changeBackground ();
-        this.backgroundWidth = width;        
-        this.totalColors = 10;
-        this.backgroundHeight = 100;
+    constructor () {
+        this.backgroundImg : this.changeBackground(); 
+        this.backgroundWidth: 100;
+        this.backgroundHeight: 100;
+    }
+
+    
+
+    update () {
 
     }
 
-    public changeBackground () : Background [];
-    const backgroundColors = ['red', 'blue', 'green', 'yellow'];
-        loadImage(backgroundColors, true);
-
-
-    
-    public update() {
-        // this.background.update();
+    draw () {
         
     }
 
-    public draw (background) {
-
-        // for loop here to connect it with the highScore
-
+    private changeBackground() {
+        if (HighScore => 10 &&) {
+            
+        }
     }
+
 }
+
+
+   
+
+
+ 
