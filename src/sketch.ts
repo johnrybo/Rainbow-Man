@@ -34,6 +34,11 @@ function preload() {
     characterImgIndigo = loadImage ('../assets/images/rainbowManIndigo.svg')
     characterImgViolet = loadImage ('../assets/images/rainbowManViolet.svg')
     characterImgOrange = loadImage ('../assets/images/rainbowManOrange.svg')
+
+    song = (window as any).loadSound('../assets/music/rainbowMan.wav');
+    collisionSound = (window as any).loadSound('../assets/soundeffects/collision.wav');
+    itemsSound = (window as any).loadSound('../assets/soundeffects/items.wav');
+    gameOverSound = (window as any).loadSound('../assets/soundeffects/gameOverSound.wav');
 }
 
 /**
