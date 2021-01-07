@@ -9,6 +9,11 @@ let characterImgIndigo: p5.Image;
 let characterImgViolet: p5.Image;
 let characterImgOrange: p5.Image;
 
+let song: p5.SoundFile;
+let collisionSound: p5.SoundFile;
+let itemsSound: p5.SoundFile;
+let gameOverSound: p5.SoundFile;
+
 /**
  * Built in preload function in P5
  * This is a good place to load assets such as
