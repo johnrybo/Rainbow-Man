@@ -34,8 +34,13 @@ class GameController {
     // samma när de har samma y-position
     private checkWallCollision() {
 
+        
         if (this.character.y < this.wall.yWallPosition && this.wall.color !== this.character.characterColor) {
             // this.wall.y = this.character.y;
+            gameOverSound.setVolume(0.3);
+            gameOverSound.play();
+            collisionSound.stop();
+            song.stop();
             noLoop();
         }
     }
@@ -96,9 +101,11 @@ class GameController {
 
             if (!this.previousCollision) {
                 this.highScore.score++
+                collisionSound.play();
                 if (this.highScore.score > this.highScore.highScoreLS) {
                     this.highScore.highScoreLS = this.highScore.score;
                     storeItem('highScore', this.highScore.highScoreLS);
+                    
                 }
                 // console.log(this.highScore.score);
             }
@@ -110,3 +117,15 @@ class GameController {
         }
     }
 }
+
+function mousePressed() {
+    song.setVolume(0.4);
+    
+    if (song.isPlaying()) {
+      // .isPlaying() returns a boolean
+      song.stop();
+    } else {
+      song.loop();
+      
+    }
+  }
