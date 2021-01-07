@@ -81,6 +81,9 @@ class GameController {
 
                 if (this.character.characterColor !== collidedWallSection.color) {
                     noLoop();
+                    gameOverSound.setVolume(0.3);
+                    gameOverSound.play();
+                    song.stop();
                 } else {
                     this.updateHighScore();
                     this.walls.shift();
