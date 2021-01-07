@@ -36,12 +36,12 @@ class Wall {
     // Create wall sections and add color
     private createWallSections(): WallSection[] {
         // todo: colors should come from level object
-        const colors = ['red', 'blue', 'green', 'yellow']
-        shuffle(colors, true)
+        const levelColors = ['red', 'blue', 'green', 'yellow']
+        shuffle(levelColors, true)
 
         const sections = [];
         for (let i = 0; i < this.totalSections; i++) {
-            sections.push(new WallSection(colors[i]))
+            sections.push(new WallSection(levelColors[i]))
         }
 
         return sections;
