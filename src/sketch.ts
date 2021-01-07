@@ -12,6 +12,7 @@ let characterImgOrange: p5.Image;
 let song: p5.SoundFile;
 let collisionSound: p5.SoundFile;
 let itemsSound: p5.SoundFile;
+let gameOverSound: p5.SoundFile;
 
 /**
  * Built in preload function in P5
@@ -22,9 +23,10 @@ function preload() {
     // Tyvärr har jag inte fått till den globala typningen för
     // inladdningen av ljud men fungerar bra enligt nedan..
     // sound = (window as any).loadSound('../assets/mySound.wav');
-    song = loadSound('../assets/music/rainbowMan.wav');
-    collisionSound = loadSound('../assets/soundeffects/collision.wav');
-    itemsSound = loadSound('../assets/soundeffects/items.wav');
+    song = (window as any).loadSound('../assets/music/rainbowMan.wav');
+    collisionSound = (window as any).loadSound('../assets/soundeffects/collision.wav');
+    itemsSound = (window as any).loadSound('../assets/soundeffects/items.wav');
+    gameOverSound = (window as any).loadSound('../assets/soundeffects/gameOverSound.wav');
     // const xmlData = loadXML('../assets/images/rainbowMan.svg');
     // characterImg = loadImage(xmlData as any)
 
