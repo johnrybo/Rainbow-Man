@@ -1,5 +1,5 @@
 class Wall {
-    private wallSections: WallSection[];
+    public wallSections: WallSection[];
     public yWallPosition: number;
     private wallWidth: number;
     private totalSections: number;
@@ -32,17 +32,18 @@ class Wall {
         }
         pop();
     }
-
+    
     // Create wall sections and add color
     private createWallSections(): WallSection[] {
         // todo: colors should come from level object
-        const colors = ['red', 'blue', 'green', 'yellow']
-        shuffle(colors, true)
-
+        const colors = ['red', 'yellow', 'green'];
+        shuffle(colors, true);
+        
         const sections = [];
         for (let i = 0; i < this.totalSections; i++) {
-            sections.push(new WallSection(colors[i]))
+            sections.push(new WallSection(colors[i]));
         }
+        
 
         return sections;
     }

@@ -1,6 +1,7 @@
 class WallSection {
-    private color: string;
-    private xPosition: number; 
+    public color: string;
+    public xPosition: number; 
+    
     
     
     constructor(color: string) {
