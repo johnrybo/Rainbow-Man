@@ -154,6 +154,8 @@ class GameController {
         if (this.character.y < wall.yWallPosition) {
             if (!this.previousCollision) {
                 this.highScore.score++
+                collisionSound.play();
+                if (this.highScore.score > this.highScore.highScoreLS) {
                 if (this.highScore.score > this.highScore.highScoreLS) {
                     this.highScore.highScoreLS = this.highScore.score;
                     storeItem('highScore', this.highScore.highScoreLS);
@@ -170,3 +172,15 @@ class GameController {
     }
 }
 }
+
+function mousePressed() {
+    song.setVolume(0.4);
+    
+    if (song.isPlaying()) {
+      // .isPlaying() returns a boolean
+      song.stop();
+    } else {
+      song.loop();
+      
+    }
+  }
