@@ -6,6 +6,7 @@ class HighScore {
     constructor() {
         this.score = 0;
         this.highScoreLS = 0;
+        
     }
     
     update() { }

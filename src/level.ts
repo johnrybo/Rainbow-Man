@@ -1,26 +1,34 @@
 class Level {
-    
     private level: number;
-    private tempo: Number;
-    // private colors: Array;
-    // private sections: Array;
-    private background: p5.Image;
+    private colors: string[];
+    private data: object[];
+    
 
-    constructor() {
-      this.level = 1;
-      this.tempo = 1;
-      // this.colors = 
-      // this.sections =
-      this.background = loadImage('../assets/images/background');
+    constructor(level:number, colors: string[], data: object[]) {
+      this.level = level;
+      this.colors = colors;
+      this.data = data;
+      
+      
+      
+      
     }
 
-    update() {}
-
-    draw() {
-       this.level 
-       this.tempo 
-       // this.colors 
-       // this.sections 
-       this.background 
+    public update() {
+      
     }
+
+    public draw() {
+      this.setLevels();
+       
+    }
+
+    private setLevels() {
+      this.highScore.score
+    }
+
+    
+   
+
+    
 }

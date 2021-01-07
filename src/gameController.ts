@@ -5,19 +5,25 @@ class GameController {
     private character: Character;
     private highScore: HighScore;
     private previousCollision: boolean;
+    private levelFactory: LevelFactory;
+    private level: Level;
 
-    constructor() {
+    constructor(totalSections: number) { 
         this.road = new Road();
         this.walls = [];
         this.character = new Character();
         this.highScore = new HighScore();
+        this.levelFactory = new LevelFactory();
+        this.level = this.levelFactory.getLevel(1);
         this.previousCollision = false;
 
-        this.addWall();
-        setInterval(() => this.addWall(), 8000);
+        this.addWall(totalSections);
+        setInterval(() => this.addWall(totalSections), 8000);
     }
 
-    private addWall() {
+
+    private addWall(totalSections: number) {
+        console.log(totalSections)
         this.walls.push(new Wall(3));
     }
 
@@ -32,13 +38,16 @@ class GameController {
     }
 
     update() {
-        this.road.update();
+        //this.road.update();   Finns inget i road.update.
         for (const wall of this.walls) {
             wall.update();
         }
         this.removeWall();
         this.character.update();
         this.checkWallCollision();
+        this.updateHighScore();
+        this.updateColor();
+        this.levelUp();
     }
 
     draw() {
@@ -123,6 +132,7 @@ class GameController {
             }
         }
     }
+}
 
     // Anger samma färg på characterColor som finns i characterImg
     private matchColors() {
@@ -145,10 +155,10 @@ class GameController {
 
     // Uppdaterar score baserat på antal väggar som har passerat gubben
     private updateHighScore() {
-
      
         for (const wall of this.walls) {
         if (this.character.y < wall.yWallPosition) {
+
             if (!this.previousCollision) {
                 this.highScore.score++
                 if (this.highScore.score > this.highScore.highScoreLS) {
@@ -158,6 +168,7 @@ class GameController {
                 // console.log(this.highScore.score);
             }
              this.previousCollision = true;
+             break;
 
          } else {
              this.previousCollision = false;
@@ -166,4 +177,11 @@ class GameController {
          
     }
 }
+
+    private levelUp() {
+        if (this.highScore.score == 10) {
+            this.level = this.levelFactory.getLevel(2);
+             
+        }
+    }
 }
