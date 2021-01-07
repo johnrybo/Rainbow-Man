@@ -64,17 +64,18 @@ class GameController {
             if (this.character.y < currentWall.yWallPosition) {
                 
                 let collidedWallSection = null;
+                let halfCharacter = 23;
 
                 // ta ut vilken färg på vilken x position krock skett på
                 switch(true) {
-                    case this.character.x < currentWall.wallSections[1].xPosition:
+                    case this.character.x + halfCharacter < currentWall.wallSections[1].xPosition:
                         collidedWallSection = currentWall.wallSections[0];
                         break;
-                    case this.character.x > currentWall.wallSections[1].xPosition &&
-                        this.character.x < currentWall.wallSections[2].xPosition:
+                    case this.character.x - halfCharacter > currentWall.wallSections[1].xPosition &&
+                        this.character.x + halfCharacter < currentWall.wallSections[2].xPosition:
                         collidedWallSection = currentWall.wallSections[1];
                         break;
-                    case this.character.x > currentWall.wallSections[2].xPosition:
+                    case this.character.x - halfCharacter> currentWall.wallSections[2].xPosition:
                         collidedWallSection = currentWall.wallSections[2];
                         break;
                 }
@@ -157,6 +158,7 @@ class GameController {
                 collisionSound.play();
                 if (this.highScore.score > this.highScore.highScoreLS) {
                 if (this.highScore.score > this.highScore.highScoreLS) {
+                if (this.highScore.score > this.highScore.highScoreLS) {
                     this.highScore.highScoreLS = this.highScore.score;
                     storeItem('highScore', this.highScore.highScoreLS);
                 }
@@ -168,19 +170,18 @@ class GameController {
              this.previousCollision = false;
              break;
          }
-         
+         }
+        }
     }
-}
 }
 
-function mousePressed() {
-    song.setVolume(0.4);
-    
-    if (song.isPlaying()) {
-      // .isPlaying() returns a boolean
-      song.stop();
-    } else {
-      song.loop();
-      
+    mousePressed() {
+        if ( song.isPlaying() ) { // .isPlaying() returns a boolean
+          song.stop();
+          
+        } else {
+          song.loop();
+          
+        }
+      }
     }
-  }

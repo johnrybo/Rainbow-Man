@@ -22,12 +22,12 @@ class Character {
   }
 
   private moveCharacter() {
-    if (keyIsPressed) {
+    
+if (keyIsPressed) {
       if (keyCode == LEFT_ARROW && this.x! > 200) {
         this.x -= this.speed;
       }
     }
-
     if (keyIsPressed) {
       if (keyCode == RIGHT_ARROW && this.x! < width - 200) {
         this.x += this.speed;
