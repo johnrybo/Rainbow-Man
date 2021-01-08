@@ -1,6 +1,5 @@
 //---- GLOBAL VARIABLES ----//
 let game: Game;
-// let characterImg: p5.Image;
 let characterImgGreen: p5.Image;
 let characterImgRed: p5.Image;
 let characterImgBlue: p5.Image;
@@ -18,17 +17,17 @@ function preload() {
     // Tyvärr har jag inte fått till den globala typningen för
     // inladdningen av ljud men fungerar bra enligt nedan..
     // sound = (window as any).loadSound('../assets/mySound.wav');
-    
+
     // const xmlData = loadXML('../assets/images/rainbowMan.svg');
     // characterImg = loadImage(xmlData as any)
 
     characterImgGreen = loadImage('../assets/images/rainbowManGreen.svg');
     characterImgRed = loadImage('../assets/images/rainbowManRed.svg');
-    characterImgBlue = loadImage ('../assets/images/rainbowManBlue.svg')
-    characterImgYellow = loadImage ('../assets/images/rainbowManYellow.svg')
-    characterImgIndigo = loadImage ('../assets/images/rainbowManIndigo.svg')
-    characterImgViolet = loadImage ('../assets/images/rainbowManViolet.svg')
-    characterImgOrange = loadImage ('../assets/images/rainbowManOrange.svg')
+    characterImgBlue = loadImage('../assets/images/rainbowManBlue.svg')
+    characterImgYellow = loadImage('../assets/images/rainbowManYellow.svg')
+    characterImgIndigo = loadImage('../assets/images/rainbowManIndigo.svg')
+    characterImgViolet = loadImage('../assets/images/rainbowManViolet.svg')
+    characterImgOrange = loadImage('../assets/images/rainbowManOrange.svg')
 }
 
 /**
@@ -41,7 +40,7 @@ function setup() {
     createCanvas(windowWidth, windowHeight);
     frameRate(60);
     // noCursor();
-    
+
     game = new Game();
 }
 
@@ -51,7 +50,7 @@ function setup() {
  * you created in the setup function above
  */
 function draw() {
-    
+
     game.update();
     game.draw();
 }

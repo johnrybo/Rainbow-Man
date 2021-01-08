@@ -32,39 +32,40 @@ class Wall {
         }
         pop();
     }
-    
+
     // Create wall sections and add color
     private createWallSections(): WallSection[] {
         // todo: colors should come from level object
 
-      /*
-        const levelColors = ['red', 'blue', 'green', 'yellow']
-        shuffle(levelColors, true)
+        /*
+          const levelColors = ['red', 'blue', 'green', 'yellow']
+          shuffle(levelColors, true)
+  
+          const sections = [];
+          for (let i = 0; i < this.totalSections; i++) {
+              sections.push(new WallSection(levelColors[i]))
+         */
 
-        const sections = [];
-        for (let i = 0; i < this.totalSections; i++) {
-            sections.push(new WallSection(levelColors[i]))
-       */
         const colors = ['red', 'yellow', 'green'];
         shuffle(colors, true);
-        
+
         const sections = [];
         for (let i = 0; i < this.totalSections; i++) {
             sections.push(new WallSection(colors[i]));
         }
-        
+
         return sections;
     }
 
     /* Move walls */
     private moveWalls() {
-        this.yWallPosition = this.yWallPosition + 1;      
+        this.yWallPosition = this.yWallPosition + 1;
     }
 
     /* Change wall size when moving */
     private changeWallSize() {
         this.wallWidth += width / 1500
-        if(this.yWallPosition + 1 > height) {
+        if (this.yWallPosition + 1 > height) {
             this.wallWidth = width * .4
         }
     }

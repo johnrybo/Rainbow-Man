@@ -1,14 +1,14 @@
 class HighScore {
-    
+
     public score: number;
     public highScoreLS: number;
 
     constructor() {
         this.score = 0;
         this.highScoreLS = 0;
-        
+
     }
-    
+
     update() { }
 
     draw() {
@@ -17,7 +17,7 @@ class HighScore {
         text("Score: " + this.score, 50, 50);
 
         this.getHighScoreFromLS();
-        text("Highscore: " + this.highScoreLS, width -300, 50);
+        text("Highscore: " + this.highScoreLS, width - 300, 50);
     }
 
     private getHighScoreFromLS() {

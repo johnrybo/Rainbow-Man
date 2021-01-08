@@ -8,7 +8,7 @@ class GameController {
     private levelFactory: LevelFactory;
     private level: Level;
 
-    constructor(totalSections: number) { 
+    constructor(totalSections: number) {
         this.road = new Road();
         this.walls = [];
         this.character = new Character();
@@ -33,8 +33,8 @@ class GameController {
                 // Delete wall from array to preserve memory
                 const index = this.walls.indexOf(wall);
                 this.walls.splice(index, 1);
-            } 
-        }        
+            }
+        }
     }
 
     update() {
@@ -62,7 +62,7 @@ class GameController {
     // Stoppar väggen från att fortsätta röra sig om väggens färg och gubbens färg inte är
     // samma när de har samma y-position
     private checkWallCollision() {
-        
+
         const wallSize = this.walls.length;
 
         if (wallSize == 2) {
@@ -71,11 +71,11 @@ class GameController {
 
             // Kollision har skett
             if (this.character.y < currentWall.yWallPosition) {
-                
+
                 let collidedWallSection = null;
 
                 // ta ut vilken färg på vilken x position krock skett på
-                switch(true) {
+                switch (true) {
                     case this.character.x < currentWall.wallSections[1].xPosition:
                         collidedWallSection = currentWall.wallSections[0];
                         break;
@@ -95,16 +95,16 @@ class GameController {
                     this.walls.shift();
                     this.updateColor();
                 }
-                
+
             }
         }
     }
-    
+
 
     // Uppdaterar färgen på gubben utifrån highScore
     private updateColor() {
         let characterImgColors = [characterImgYellow, characterImgGreen, characterImgRed];
-        
+
         for (const wall of this.walls) {
             if (this.highScore.score >= 2 && this.highScore.score <= 4 && wall.yWallPosition < 150) {
 
@@ -113,7 +113,7 @@ class GameController {
                 this.matchColors();
 
             } else if (this.highScore.score >= 5 && this.highScore.score <= 7 && wall.yWallPosition < 150) {
-            
+
                 characterImgColors.push(characterImgIndigo);
                 this.character.characterImg = random(characterImgColors)
                 this.matchColors();
@@ -128,11 +128,10 @@ class GameController {
 
                 characterImgColors.push(characterImgViolet);
                 this.character.characterImg = random(characterImgColors)
-                this.matchColors();            
+                this.matchColors();
             }
         }
     }
-}
 
     // Anger samma färg på characterColor som finns i characterImg
     private matchColors() {
@@ -155,33 +154,32 @@ class GameController {
 
     // Uppdaterar score baserat på antal väggar som har passerat gubben
     private updateHighScore() {
-     
+
         for (const wall of this.walls) {
-        if (this.character.y < wall.yWallPosition) {
+            if (this.character.y < wall.yWallPosition) {
 
-            if (!this.previousCollision) {
-                this.highScore.score++
-                if (this.highScore.score > this.highScore.highScoreLS) {
-                    this.highScore.highScoreLS = this.highScore.score;
-                    storeItem('highScore', this.highScore.highScoreLS);
+                if (!this.previousCollision) {
+                    this.highScore.score++
+                    if (this.highScore.score > this.highScore.highScoreLS) {
+                        this.highScore.highScoreLS = this.highScore.score;
+                        storeItem('highScore', this.highScore.highScoreLS);
+                    }
+                    // console.log(this.highScore.score);
                 }
-                // console.log(this.highScore.score);
-            }
-             this.previousCollision = true;
-             break;
+                this.previousCollision = true;
+                break;
 
-         } else {
-             this.previousCollision = false;
-             break;
-         }
-         
+            } else {
+                this.previousCollision = false;
+                break;
+            }
+        }
     }
-}
 
     private levelUp() {
         if (this.highScore.score == 10) {
             this.level = this.levelFactory.getLevel(2);
-             
+
         }
     }
 }

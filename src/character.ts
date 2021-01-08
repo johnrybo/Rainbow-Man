@@ -13,7 +13,7 @@ class Character {
     this.characterColor = 'red';
   }
 
-  update() {}
+  update() { }
 
   draw() {
     imageMode(CENTER);

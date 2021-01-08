@@ -4,14 +4,13 @@ interface LevelData {
     background: p5.Image;
 }
 
-
 class LevelFactory {
     private levelData: LevelData[];
     private allColors: string[];
 
     constructor() {
         this.allColors = ['red', 'blue', 'green', 'yellow', 'purple', 'pink'];
-        
+
         this.levelData = [
             {
                 wallSectionCount: 3,
@@ -22,42 +21,42 @@ class LevelFactory {
                 wallSectionCount: 4,
                 tempo: 1,
                 background: loadImage('1'),
-            }
+            },
             {
                 wallSectionCount: 4,
                 tempo: 2,
                 background: loadImage('2'),
-            }
+            },
             {
                 wallSectionCount: 4,
                 tempo: 2,
                 background: loadImage('2'),
-            }
+            },
             {
                 wallSectionCount: 4,
                 tempo: 2,
                 background: loadImage('3'),
-            }
+            },
             {
                 wallSectionCount: 4,
                 tempo: 2,
                 background: loadImage('3'),
-            }
+            },
             {
                 wallSectionCount: 4,
                 tempo: 3,
                 background: loadImage('4'),
-            }
+            },
             {
                 wallSectionCount: 4,
                 tempo: 3,
                 background: loadImage('4'),
-            }
+            },
             {
                 wallSectionCount: 4,
                 tempo: 3,
                 background: loadImage('5'),
-            }
+            },
             {
                 wallSectionCount: 4,
                 tempo: 3,
