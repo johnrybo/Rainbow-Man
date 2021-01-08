@@ -66,9 +66,9 @@ class LevelFactory {
 
     public getLevel(level: number): Level {
         const data = this.levelData[level - 1];
-        const colors = this.allColors.slice(data.wallSectionCount);
+        const colors = this.allColors.slice(0, data.wallSectionCount);
 
-        return new Level(level, colors, data);
+        return new Level(level, colors, data.tempo, data.wallSectionCount);
     }
 }
 

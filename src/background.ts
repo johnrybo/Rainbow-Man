@@ -10,8 +10,6 @@ class Background {
     }
 
     draw() {
-        
-
 
     }
 }

@@ -7,23 +7,24 @@ class GameController {
     private previousCollision: boolean;
     private levelFactory: LevelFactory;
     private level: Level;
+    private currentLevel: number
 
-    constructor(totalSections: number) {
+    constructor() { // Ta emot levelData från Level
         this.road = new Road();
         this.walls = [];
         this.character = new Character();
         this.highScore = new HighScore();
         this.levelFactory = new LevelFactory();
+        this.currentLevel = 1
         this.level = this.levelFactory.getLevel(1);
         this.previousCollision = false;
 
-        this.addWall(totalSections);
-        setInterval(() => this.addWall(totalSections), 8000);
+        this.addWall();
+        setInterval(() => this.addWall(), 8000);
     }
 
 
-    private addWall(totalSections: number) {
-        console.log(totalSections)
+    private addWall() {
         this.walls.push(new Wall(3));
     }
 
@@ -47,7 +48,8 @@ class GameController {
         this.checkWallCollision();
         this.updateHighScore();
         this.updateColor();
-        this.levelUp();
+        this.convertScoreToLevel();
+
     }
 
     draw() {
@@ -72,7 +74,7 @@ class GameController {
             // Kollision har skett
             if (this.character.y < currentWall.yWallPosition) {
 
-                let collidedWallSection = null;
+                let collidedWallSection: WallSection;
 
                 // ta ut vilken färg på vilken x position krock skett på
                 switch (true) {
@@ -83,7 +85,7 @@ class GameController {
                         this.character.x < currentWall.wallSections[2].xPosition:
                         collidedWallSection = currentWall.wallSections[1];
                         break;
-                    case this.character.x > currentWall.wallSections[2].xPosition:
+                    default:
                         collidedWallSection = currentWall.wallSections[2];
                         break;
                 }
@@ -136,6 +138,15 @@ class GameController {
         }
     }
 
+    private convertScoreToLevel() {
+        switch(true) {
+            case this.highScore.score >= 2 && this.highScore.score <= 4:
+                this.level = this.levelFactory.getLevel(2);
+                console.log(this.level)
+                break;                
+        }
+    }
+
     // Anger samma färg på characterColor som finns i characterImg
     private matchColors() {
         if (this.character.characterImg == characterImgBlue) {
@@ -177,13 +188,6 @@ class GameController {
                 this.previousCollision = false;
                 break;
             }
-        }
-    }
-
-    private levelUp() {
-        if (this.highScore.score == 10) {
-            this.level = this.levelFactory.getLevel(2);
-
         }
     }
 }
