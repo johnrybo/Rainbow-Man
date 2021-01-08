@@ -10,57 +10,56 @@ class LevelFactory {
 
     constructor() {
         this.allColors = ['red', 'blue', 'green', 'yellow', 'purple', 'pink'];
-
         this.levelData = [
             {
                 wallSectionCount: 3,
                 tempo: 1,
-                background: loadImage('1'),
+                background: backgroundLevel1,
             },
             {
                 wallSectionCount: 4,
                 tempo: 1,
-                background: loadImage('1'),
+                background: backgroundLevel2,
             },
             {
                 wallSectionCount: 4,
                 tempo: 2,
-                background: loadImage('2'),
+                background: backgroundLevel3,
             },
             {
                 wallSectionCount: 4,
                 tempo: 2,
-                background: loadImage('2'),
+                background: backgroundLevel4,
             },
             {
                 wallSectionCount: 4,
                 tempo: 2,
-                background: loadImage('3'),
+                background: backgroundLevel5,
             },
             {
                 wallSectionCount: 4,
                 tempo: 2,
-                background: loadImage('3'),
+                background: backgroundLevel6,
             },
             {
                 wallSectionCount: 4,
                 tempo: 3,
-                background: loadImage('4'),
+                background: backgroundLevel7,
             },
             {
                 wallSectionCount: 4,
                 tempo: 3,
-                background: loadImage('4'),
+                background: backgroundLevel1,
             },
             {
                 wallSectionCount: 4,
                 tempo: 3,
-                background: loadImage('5'),
+                background: backgroundLevel2,
             },
             {
                 wallSectionCount: 4,
                 tempo: 3,
-                background: loadImage('5'),
+                background: backgroundLevel6,
             }
         ];
     }
