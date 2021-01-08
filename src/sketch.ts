@@ -8,6 +8,10 @@ let characterImgIndigo: p5.Image;
 let characterImgViolet: p5.Image;
 let characterImgOrange: p5.Image;
 
+let song: p5.SoundFile;
+let collisionSound: p5.SoundFile;
+let itemsSound: p5.SoundFile;
+let gameOverSound: p5.SoundFile;
 /**
  * Built in preload function in P5
  * This is a good place to load assets such as
@@ -28,6 +32,11 @@ function preload() {
     characterImgIndigo = loadImage('../assets/images/rainbowManIndigo.svg')
     characterImgViolet = loadImage('../assets/images/rainbowManViolet.svg')
     characterImgOrange = loadImage('../assets/images/rainbowManOrange.svg')
+
+    song = (window as any).loadSound('../assets/music/rainbowMan.wav');
+    collisionSound = (window as any).loadSound('../assets/soundeffects/collision.wav');
+    itemsSound = (window as any).loadSound('../assets/soundeffects/items.wav');
+    gameOverSound = (window as any).loadSound('../assets/soundeffects/gameOverSound.wav');
 }
 
 /**
