@@ -6,18 +6,22 @@ class HighScore {
     constructor() {
         this.score = 0;
         this.highScoreLS = 0;
+        
 
     }
 
     update() { }
 
     draw() {
+        push();
         textSize(width / 40);
-        // textAlign(CENTER, CENTER);
-        text("Score: " + this.score, 50, 50);
-
+        textAlign(LEFT, TOP);
+        text("Score: " + this.score, 20, 20);
+        
         this.getHighScoreFromLS();
-        text("Highscore: " + this.highScoreLS, width - 300, 50);
+        textAlign(RIGHT, TOP);
+        text("Highscore: " + this.highScoreLS, width - 20, 20);
+        pop();
     }
 
     private getHighScoreFromLS() {

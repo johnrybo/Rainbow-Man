@@ -6,11 +6,10 @@ class WallSection {
 
     constructor(color: string) {
         this.color = color;
-        this.xPosition = this.handleXPosition()
+        this.xPosition = 0;
     }
 
-    public update() {
-    }
+    public update() {}
 
     public draw(parentPositionY: number, parentWidth: number, parentHeight: number, parentTotalSections: number, index: number) {
         push();

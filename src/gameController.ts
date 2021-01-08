@@ -8,7 +8,7 @@ class GameController {
     private levelFactory: LevelFactory;
     private level: Level;
 
-    constructor(totalSections: number) {
+    constructor() { // Ta emot levelData från Level
         this.road = new Road();
         this.walls = [];
         this.character = new Character();
@@ -17,14 +17,13 @@ class GameController {
         this.level = this.levelFactory.getLevel(1);
         this.previousCollision = false;
 
-        this.addWall(totalSections);
-        setInterval(() => this.addWall(totalSections), 8000);
+        this.addWall();
+        setInterval(() => this.addWall(), 8000);
     }
 
 
-    private addWall(totalSections: number) {
-        console.log(totalSections)
-        this.walls.push(new Wall(3));
+    private addWall() {
+        this.walls.push(new Wall(this.level.getWallSectionCount()));
     }
 
     private removeWall() {
@@ -48,6 +47,7 @@ class GameController {
         this.updateHighScore();
         this.updateColor();
         this.levelUp();
+
     }
 
     draw() {
@@ -72,7 +72,7 @@ class GameController {
             // Kollision har skett
             if (this.character.y < currentWall.yWallPosition) {
 
-                let collidedWallSection = null;
+                let collidedWallSection: WallSection;
 
                 // ta ut vilken färg på vilken x position krock skett på
                 switch (true) {
@@ -83,7 +83,7 @@ class GameController {
                         this.character.x < currentWall.wallSections[2].xPosition:
                         collidedWallSection = currentWall.wallSections[1];
                         break;
-                    case this.character.x > currentWall.wallSections[2].xPosition:
+                    default:
                         collidedWallSection = currentWall.wallSections[2];
                         break;
                 }
@@ -136,6 +136,15 @@ class GameController {
         }
     }
 
+    private levelUp() {
+        const currentLevel = 1; // this.level.getCurrentLevel();
+        console.log(this.level.getCurrentLevel())
+        const scoreNeededForNextLevel = currentLevel * 2;
+        if (this.highScore.score >=  scoreNeededForNextLevel) {
+            this.level = this.levelFactory.getLevel(currentLevel + 1);
+        }
+    }
+
     // Anger samma färg på characterColor som finns i characterImg
     private matchColors() {
         if (this.character.characterImg == characterImgBlue) {
@@ -177,13 +186,6 @@ class GameController {
                 this.previousCollision = false;
                 break;
             }
-        }
-    }
-
-    private levelUp() {
-        if (this.highScore.score == 10) {
-            this.level = this.levelFactory.getLevel(2);
-
         }
     }
 }

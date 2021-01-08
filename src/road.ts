@@ -2,11 +2,13 @@ class Road {
     update() { }
 
     draw() {
-        image(backgroundLevel6, 0, 0, windowWidth, windowHeight);
+        push()
+        imageMode(CORNER);
+        image(backgroundLevel6, 0, 0, width, height);
         fill('lightgrey');
         noStroke();
         
-        quad(width * .3, 100, width * .7, 100, width - 100, height, 100, height);
-        
+        quad(width * .3, 100, width * .7, 100, width * .9, height, width * .1, height);
+        pop();
     }
 }
