@@ -5,18 +5,13 @@ class Wall {
     private totalSections: number;
     private wallHeight: number;
 
-    // enbart för test
-    public color: string;
-
     constructor(totalSections: number) {
         this.totalSections = totalSections;
         this.wallSections = this.createWallSections();
         this.yWallPosition = height * .05;
         this.wallWidth = width * .4;
         this.wallHeight = 100;
-
-        // enbart för test
-        this.color = 'red';
+        
     }
 
     public update() {
@@ -35,6 +30,7 @@ class Wall {
 
     // Create wall sections and add color
     private createWallSections(): WallSection[] {
+        
         // todo: colors should come from level object
         const colors = ['red', 'yellow', 'green'];
         shuffle(colors, true);
@@ -54,7 +50,7 @@ class Wall {
 
     /* Change wall size when moving */
     private changeWallSize() {
-        this.wallWidth += width / 1500
+        this.wallWidth += width / 1900
         if (this.yWallPosition + 1 > height) {
             this.wallWidth = width * .4
         }

@@ -64,11 +64,11 @@ class LevelFactory {
         ];
     }
 
-    public getLevel(level: number): Level {
-        const data = this.levelData[level - 1];
+    public getLevel(currentLevel: number): Level {
+        const data = this.levelData[currentLevel - 1];
         const colors = this.allColors.slice(0, data.wallSectionCount);
 
-        return new Level(level, colors, data.tempo, data.wallSectionCount);
+        return new Level(currentLevel, colors, data.tempo, data.wallSectionCount);
     }
 }
 

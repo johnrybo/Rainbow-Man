@@ -1,28 +1,26 @@
 class Level {
-  private level: number;
+  private currentLevel: number;
   private colors: string[];
   private tempo: number;
   private wallSectionCount: number;
 
-  constructor(level: number, colors: string[], tempo: number, wallSectionCount: number) {
-    this.level = level;
+  constructor(currentLevel: number, colors: string[], tempo: number, wallSectionCount: number) {
+    this.currentLevel = currentLevel;
     this.colors = colors;
     this.tempo = tempo;
     this.wallSectionCount = wallSectionCount;
-
-    console.log(this.level, this.colors, this.tempo, this.wallSectionCount);
   }
 
-  public update() {
-
+  public getCurrentLevel() {
+    return this.currentLevel;
   }
-
-  public draw() {
-    this.setLevels();
-
+  public getColors() {
+    return this.colors;
   }
-
-  private setLevels() {
-    // this.highScore.score
+  public getTempo() {
+    return this.tempo;
+  }
+  public getWallSectionCount() {
+    return this.wallSectionCount;
   }
 }

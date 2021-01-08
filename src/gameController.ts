@@ -7,7 +7,6 @@ class GameController {
     private previousCollision: boolean;
     private levelFactory: LevelFactory;
     private level: Level;
-    private currentLevel: number
 
     constructor() { // Ta emot levelData från Level
         this.road = new Road();
@@ -15,7 +14,6 @@ class GameController {
         this.character = new Character();
         this.highScore = new HighScore();
         this.levelFactory = new LevelFactory();
-        this.currentLevel = 1
         this.level = this.levelFactory.getLevel(1);
         this.previousCollision = false;
 
@@ -25,7 +23,7 @@ class GameController {
 
 
     private addWall() {
-        this.walls.push(new Wall(3));
+        this.walls.push(new Wall(this.level.getWallSectionCount()));
     }
 
     private removeWall() {
@@ -48,7 +46,7 @@ class GameController {
         this.checkWallCollision();
         this.updateHighScore();
         this.updateColor();
-        this.convertScoreToLevel();
+        this.levelUp();
 
     }
 
@@ -138,12 +136,12 @@ class GameController {
         }
     }
 
-    private convertScoreToLevel() {
-        switch(true) {
-            case this.highScore.score >= 2 && this.highScore.score <= 4:
-                this.level = this.levelFactory.getLevel(2);
-                console.log(this.level)
-                break;                
+    private levelUp() {
+        const currentLevel = 1; // this.level.getCurrentLevel();
+        console.log(this.level.getCurrentLevel())
+        const scoreNeededForNextLevel = currentLevel * 2;
+        if (this.highScore.score >=  scoreNeededForNextLevel) {
+            this.level = this.levelFactory.getLevel(currentLevel + 1);
         }
     }
 
