@@ -90,6 +90,9 @@ class GameController {
 
                 if (this.character.characterColor !== collidedWallSection.color) {
                     noLoop();
+                    gameOverSound.setVolume(0.3);
+                    gameOverSound.play();
+                    song.stop();
                 } else {
                     this.updateHighScore();
                     this.walls.shift();
@@ -160,6 +163,7 @@ class GameController {
 
                 if (!this.previousCollision) {
                     this.highScore.score++
+                    collisionSound.play();
                     if (this.highScore.score > this.highScore.highScoreLS) {
                         this.highScore.highScoreLS = this.highScore.score;
                         storeItem('highScore', this.highScore.highScoreLS);

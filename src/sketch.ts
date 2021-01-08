@@ -15,6 +15,10 @@ let backgroundLevel5: p5.Image;
 let backgroundLevel6: p5.Image;
 let backgroundLevel7: p5.Image;
 
+let song: p5.SoundFile;
+let collisionSound: p5.SoundFile;
+let itemsSound: p5.SoundFile;
+let gameOverSound: p5.SoundFile;
 /**
  * Built in preload function in P5
  * This is a good place to load assets such as
@@ -44,6 +48,11 @@ function preload() {
     backgroundLevel6 = loadImage('../assets/images/backgrounds/darkblue.jpeg');
     backgroundLevel7 = loadImage('../assets/images/backgrounds/green.jpeg');
     backgroundLevel7 = loadImage('../assets/images/backgrounds/yellow.jpeg');
+
+    song = (window as any).loadSound('../assets/music/rainbowMan.wav');
+    collisionSound = (window as any).loadSound('../assets/soundeffects/collision.wav');
+    itemsSound = (window as any).loadSound('../assets/soundeffects/items.wav');
+    gameOverSound = (window as any).loadSound('../assets/soundeffects/gameOverSound.wav');
 }
 
 /**
