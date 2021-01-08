@@ -7,6 +7,13 @@ let characterImgYellow: p5.Image;
 let characterImgIndigo: p5.Image;
 let characterImgViolet: p5.Image;
 let characterImgOrange: p5.Image;
+let backgroundLevel1: p5.Image;
+let backgroundLevel2: p5.Image;
+let backgroundLevel3: p5.Image;
+let backgroundLevel4: p5.Image;
+let backgroundLevel5: p5.Image;
+let backgroundLevel6: p5.Image;
+let backgroundLevel7: p5.Image;
 
 /**
  * Built in preload function in P5
@@ -23,11 +30,20 @@ function preload() {
 
     characterImgGreen = loadImage('../assets/images/rainbowManGreen.svg');
     characterImgRed = loadImage('../assets/images/rainbowManRed.svg');
-    characterImgBlue = loadImage('../assets/images/rainbowManBlue.svg')
-    characterImgYellow = loadImage('../assets/images/rainbowManYellow.svg')
-    characterImgIndigo = loadImage('../assets/images/rainbowManIndigo.svg')
-    characterImgViolet = loadImage('../assets/images/rainbowManViolet.svg')
-    characterImgOrange = loadImage('../assets/images/rainbowManOrange.svg')
+    characterImgBlue = loadImage('../assets/images/rainbowManBlue.svg');
+    characterImgYellow = loadImage('../assets/images/rainbowManYellow.svg');
+    characterImgIndigo = loadImage('../assets/images/rainbowManIndigo.svg');
+    characterImgViolet = loadImage('../assets/images/rainbowManViolet.svg');
+    characterImgOrange = loadImage('../assets/images/rainbowManOrange.svg');
+
+    backgroundLevel1 = loadImage('../assets/images/backgrounds/starting-background.jpeg');
+    backgroundLevel2 = loadImage('../assets/images/backgrounds/starting-color.jpeg');
+    backgroundLevel3 = loadImage('../assets/images/backgrounds/lightblue.jpeg');
+    backgroundLevel4 = loadImage('../assets/images/backgrounds/pink.jpeg');
+    backgroundLevel5 = loadImage('../assets/images/backgrounds/purple.jpeg');
+    backgroundLevel6 = loadImage('../assets/images/backgrounds/darkblue.jpeg');
+    backgroundLevel7 = loadImage('../assets/images/backgrounds/green.jpeg');
+    backgroundLevel7 = loadImage('../assets/images/backgrounds/yellow.jpeg');
 }
 
 /**
