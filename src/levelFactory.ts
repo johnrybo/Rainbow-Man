@@ -1,64 +1,75 @@
 interface LevelData {
     wallSectionCount: number;
     tempo: number;
+    wallInterval: number;
     background: p5.Image;
 }
 
 class LevelFactory {
     private levelData: LevelData[];
-    private allColors: string[];
+    public allColors: string[];
 
     constructor() {
-        this.allColors = ['red', 'blue', 'green', 'yellow', 'purple', 'pink'];
+        this.allColors = ['red', 'blue', 'green', 'yellow', 'indigo', 'orange', 'violet'];
         this.levelData = [
             {
                 wallSectionCount: 3,
-                tempo: 1,
+                tempo: 2,
+                wallInterval: 4000,
                 background: backgroundLevel1,
             },
             {
                 wallSectionCount: 4,
-                tempo: 1,
+                tempo: 2,
+                wallInterval: 4000,
                 background: backgroundLevel2,
             },
             {
                 wallSectionCount: 4,
                 tempo: 2,
+                wallInterval: 4000,
                 background: backgroundLevel3,
             },
             {
                 wallSectionCount: 4,
                 tempo: 2,
+                wallInterval: 3000,
                 background: backgroundLevel4,
             },
             {
-                wallSectionCount: 4,
+                wallSectionCount: 5,
                 tempo: 2,
+                wallInterval: 3000,
                 background: backgroundLevel5,
             },
             {
-                wallSectionCount: 4,
+                wallSectionCount: 5,
                 tempo: 2,
+                wallInterval: 3000,
                 background: backgroundLevel6,
             },
             {
-                wallSectionCount: 4,
-                tempo: 3,
+                wallSectionCount: 5,
+                tempo: 2,
+                wallInterval: 3000,
                 background: backgroundLevel7,
             },
             {
-                wallSectionCount: 4,
-                tempo: 3,
+                wallSectionCount: 6,
+                tempo: 2,
+                wallInterval: 3000,
                 background: backgroundLevel1,
             },
             {
-                wallSectionCount: 4,
-                tempo: 3,
+                wallSectionCount: 6,
+                tempo: 2,
+                wallInterval: 3000,
                 background: backgroundLevel2,
             },
             {
-                wallSectionCount: 4,
-                tempo: 3,
+                wallSectionCount: 7,
+                tempo: 2,
+                wallInterval: 3000,
                 background: backgroundLevel6,
             }
         ];
@@ -66,9 +77,10 @@ class LevelFactory {
 
     public getLevel(currentLevel: number): Level {
         const data = this.levelData[currentLevel - 1];
-        const colors = this.allColors.slice(0, data.wallSectionCount);
+        
+        let colors = this.allColors.slice(0, data.wallSectionCount);
 
-        return new Level(currentLevel, colors, data.tempo, data.wallSectionCount);
+        return new Level(currentLevel, colors, data.tempo, data.wallInterval, data.wallSectionCount, data.background);
     }
 }
 

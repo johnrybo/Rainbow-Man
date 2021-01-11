@@ -18,12 +18,33 @@ class GameController {
         this.previousCollision = false;
 
         this.addWall();
-        setInterval(() => this.addWall(), 8000);
+        setInterval(() => this.addWall(), this.level.getWallInterval());
     }
 
+    update() {
+
+        for (const wall of this.walls) {
+            wall.update();
+        }
+
+        this.removeWall();
+        this.character.update();
+        this.checkWallCollision();
+        this.updateHighScore();
+        this.levelUp();
+    }
+
+    draw() {
+        this.road.draw(this.level.getLevelBackground());
+        for (const wall of this.walls) {
+            wall.draw();
+        }
+        this.character.draw();
+        this.highScore.draw();
+    }
 
     private addWall() {
-        this.walls.push(new Wall(this.level.getWallSectionCount()));
+        this.walls.push(new Wall(this.level.getWallSectionCount(), this.level.getColors(), this.level.getTempo()));
     }
 
     private removeWall() {
@@ -36,131 +57,134 @@ class GameController {
         }
     }
 
-    update() {
-        //this.road.update();   Finns inget i road.update.
-        for (const wall of this.walls) {
-            wall.update();
-        }
-        this.removeWall();
-        this.character.update();
-        this.checkWallCollision();
-        this.updateHighScore();
-        this.updateColor();
-        this.levelUp();
-
-    }
-
-    draw() {
-        this.road.draw();
-        for (const wall of this.walls) {
-            wall.draw();
-        }
-        this.character.draw();
-        this.highScore.draw();
-    }
-
     // Stoppar väggen från att fortsätta röra sig om väggens färg och gubbens färg inte är
     // samma när de har samma y-position
     private checkWallCollision() {
 
-        const wallSize = this.walls.length;
+        const currentWall = this.walls[0];
 
-        if (wallSize == 2) {
+        // Kollision har skett
+        if (this.character.y < currentWall.yWallPosition) {
 
-            const currentWall = this.walls[0];
+            let collidedWallSection: WallSection;
 
-            // Kollision har skett
-            if (this.character.y < currentWall.yWallPosition) {
+            // ta ut vilken färg på vilken x position krock skett på
+            switch (true) {
+                // krock med vägg 3 - sektion 1
+                case this.character.x < currentWall.wallSections[1].xPosition:
+                    collidedWallSection = currentWall.wallSections[0];
+                    break;
+                // krock med vägg 3 - sektion 2
+                case this.character.x > currentWall.wallSections[1].xPosition &&
+                    this.character.x < currentWall.wallSections[2].xPosition:
+                    collidedWallSection = currentWall.wallSections[1];
+                    break;
 
-                let collidedWallSection: WallSection;
+                // krock med vägg 4 - sektion 4
+                case currentWall.totalSections == 4 && this.character.x > currentWall.wallSections[3].xPosition:
+                    collidedWallSection = currentWall.wallSections[3];
+                    break;
 
-                // ta ut vilken färg på vilken x position krock skett på
-                switch (true) {
-                    case this.character.x < currentWall.wallSections[1].xPosition:
-                        collidedWallSection = currentWall.wallSections[0];
-                        break;
-                    case this.character.x > currentWall.wallSections[1].xPosition &&
-                        this.character.x < currentWall.wallSections[2].xPosition:
-                        collidedWallSection = currentWall.wallSections[1];
-                        break;
-                    default:
-                        collidedWallSection = currentWall.wallSections[2];
-                        break;
-                }
+                // krock med vägg 5 - sektion 4
+                case currentWall.totalSections == 5 && this.character.x > currentWall.wallSections[3].xPosition && this.character.x < currentWall.wallSections[4].xPosition:
+                    collidedWallSection = currentWall.wallSections[3];
+                    break;
+                // krock med vägg 5 - sektion 5
+                case currentWall.totalSections == 5 && this.character.x > currentWall.wallSections[4].xPosition:
+                    collidedWallSection = currentWall.wallSections[4];
+                    break;
 
-                if (this.character.characterColor !== collidedWallSection.color) {
-                    noLoop();
-                    gameOverSound.setVolume(0.3);
-                    gameOverSound.play();
-                    song.stop();
-                } else {
-                    this.updateHighScore();
-                    this.walls.shift();
-                    this.updateColor();
-                }
+                // krock med vägg 6 - sektion 4
+                case currentWall.totalSections == 6 && this.character.x > currentWall.wallSections[3].xPosition && this.character.x < currentWall.wallSections[4].xPosition:
+                    collidedWallSection = currentWall.wallSections[3];
+                    break;
+                // krock med vägg 6 - sektion 5
+                case currentWall.totalSections == 6 && this.character.x > currentWall.wallSections[4].xPosition && this.character.x < currentWall.wallSections[5].xPosition:
+                    collidedWallSection = currentWall.wallSections[4];
+                    break;
+                // krock med vägg 6 - sektion 6
+                case currentWall.totalSections == 6 && this.character.x > currentWall.wallSections[5].xPosition:
+                    collidedWallSection = currentWall.wallSections[5];
+                    break;
 
+                // krock med vägg 7 -sektion 4
+                case currentWall.totalSections == 7 && this.character.x > currentWall.wallSections[3].xPosition && this.character.x < currentWall.wallSections[4].xPosition:
+                    collidedWallSection = currentWall.wallSections[3];
+                    break;
+                // krock med vägg 7 - sektion 5
+                case currentWall.totalSections == 7 && this.character.x > currentWall.wallSections[4].xPosition && this.character.x < currentWall.wallSections[5].xPosition:
+                    collidedWallSection = currentWall.wallSections[4];
+                    break;
+                // krock med vägg 7 - sektion 6
+                case currentWall.totalSections == 7 && this.character.x > currentWall.wallSections[5].xPosition && this.character.x < currentWall.wallSections[6].xPosition:
+                    collidedWallSection = currentWall.wallSections[5];
+                    break;
+                // krock med vägg 7 - sektion 7
+                case currentWall.totalSections == 7 && this.character.x > currentWall.wallSections[6].xPosition:
+                    collidedWallSection = currentWall.wallSections[6];
+                    break;
+
+                // krock med vägg 3 - sektion 3
+                default:
+                    collidedWallSection = currentWall.wallSections[2];
+                    break;
             }
+
+            if (this.character.characterColor !== collidedWallSection.color) {
+                noLoop();
+                // gameOverSound.setVolume(0.3);
+                // gameOverSound.play();
+                // song.stop();
+            } else {
+                this.updateHighScore();
+                this.walls.shift();
+                this.updateColor();
+            }
+
         }
     }
 
-
     // Uppdaterar färgen på gubben utifrån highScore
     private updateColor() {
-        let characterImgColors = [characterImgYellow, characterImgGreen, characterImgRed];
 
-        for (const wall of this.walls) {
-            if (this.highScore.score >= 2 && this.highScore.score <= 4 && wall.yWallPosition < 150) {
+        let characterImgColors = [characterImgRed, characterImgGreen, characterImgBlue];
 
-                characterImgColors.push(characterImgYellow);
-                this.character.characterImg = random(characterImgColors)
-                this.matchColors();
+        if (this.highScore.score == 3) {
 
-            } else if (this.highScore.score >= 5 && this.highScore.score <= 7 && wall.yWallPosition < 150) {
+            characterImgColors.push(characterImgYellow);
+            this.character.characterImg = random(characterImgColors)
+            this.character.matchColors();
 
-                characterImgColors.push(characterImgIndigo);
-                this.character.characterImg = random(characterImgColors)
-                this.matchColors();
+        } else if (this.highScore.score == 6) {
 
-            } else if (this.highScore.score >= 8 && this.highScore.score <= 10 && wall.yWallPosition < 150) {
+            characterImgColors.push(characterImgIndigo);
+            this.character.characterImg = random(characterImgColors)
+            this.character.matchColors();
 
-                characterImgColors.push(characterImgOrange);
-                this.character.characterImg = random(characterImgColors)
-                this.matchColors();
+        } else if (this.highScore.score == 9) {
 
-            } else if (this.highScore.score >= 11 && wall.yWallPosition < 150) {
+            characterImgColors.push(characterImgOrange);
+            this.character.characterImg = random(characterImgColors)
+            this.character.matchColors();
 
-                characterImgColors.push(characterImgViolet);
-                this.character.characterImg = random(characterImgColors)
-                this.matchColors();
-            }
+        } else if (this.highScore.score == 12) {
+
+            characterImgColors.push(characterImgViolet);
+            this.character.characterImg = random(characterImgColors)
+            this.character.matchColors();
         }
     }
 
     private levelUp() {
-        const currentLevel = 1; // this.level.getCurrentLevel();
-        console.log(this.level.getCurrentLevel())
-        const scoreNeededForNextLevel = currentLevel * 2;
-        if (this.highScore.score >=  scoreNeededForNextLevel) {
+        const currentLevel = this.level.getCurrentLevel();
+        const scoreNeededForNextLevel = currentLevel;
+
+        if (this.highScore.score >= scoreNeededForNextLevel && this.highScore.score < 10) {
             this.level = this.levelFactory.getLevel(currentLevel + 1);
         }
-    }
 
-    // Anger samma färg på characterColor som finns i characterImg
-    private matchColors() {
-        if (this.character.characterImg == characterImgBlue) {
-            this.character.characterColor = 'blue'
-        } else if (this.character.characterImg == characterImgRed) {
-            this.character.characterColor = 'red'
-        } else if (this.character.characterImg == characterImgGreen) {
-            this.character.characterColor = 'green'
-        } else if (this.character.characterImg == characterImgYellow) {
-            this.character.characterColor = 'yellow'
-        } else if (this.character.characterImg == characterImgIndigo) {
-            this.character.characterColor = 'indigo'
-        } else if (this.character.characterImg == characterImgViolet) {
-            this.character.characterColor = 'violet'
-        } else if (this.character.characterImg == characterImgOrange) {
-            this.character.characterColor = 'orange'
+        if (this.highScore.score >= 10) {
+            this.level = this.levelFactory.getLevel(currentLevel);
         }
     }
 
@@ -172,12 +196,11 @@ class GameController {
 
                 if (!this.previousCollision) {
                     this.highScore.score++
-                    collisionSound.play();
+                    // collisionSound.play();
                     if (this.highScore.score > this.highScore.highScoreLS) {
                         this.highScore.highScoreLS = this.highScore.score;
                         storeItem('highScore', this.highScore.highScoreLS);
                     }
-                    // console.log(this.highScore.score);
                 }
                 this.previousCollision = true;
                 break;

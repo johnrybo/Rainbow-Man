@@ -1,10 +1,9 @@
 class Road {
-    update() { }
 
-    draw() {
+    draw(backgroundImage: p5.Image) {
         push()
         imageMode(CORNER);
-        image(backgroundLevel6, 0, 0, width, height);
+        image(backgroundImage, 0, 0, width, height);
         fill('lightgrey');
         noStroke();
         
