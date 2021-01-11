@@ -30,6 +30,7 @@ class Game implements IGameState {
 
     /** Looks at the state and draws accordingly */
     public draw() {
+        push();
         if (this.gameState === "mainmenu") {
             this.mainMenu.draw();
         }
@@ -41,5 +42,6 @@ class Game implements IGameState {
 
             // this.countDownToStart.draw();
         }
+        pop();
     }
 }
