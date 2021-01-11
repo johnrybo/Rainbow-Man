@@ -8,6 +8,8 @@ let characterImgIndigo: p5.Image;
 let characterImgViolet: p5.Image;
 let characterImgOrange: p5.Image;
 
+let rainbowImg: p5.Image;
+
 let backgroundLevel1: p5.Image;
 let backgroundLevel2: p5.Image;
 let backgroundLevel3: p5.Image;
@@ -43,6 +45,8 @@ function preload() {
     characterImgIndigo = loadImage('../assets/images/rainbowManIndigo.svg');
     characterImgViolet = loadImage('../assets/images/rainbowManViolet.svg');
     characterImgOrange = loadImage('../assets/images/rainbowManOrange.svg');
+
+    rainbowImg = loadImage('../assets/images/rainbow.png')
 
     backgroundLevel1 = loadImage('../assets/images/backgrounds/starting-background.jpeg');
     backgroundLevel2 = loadImage('../assets/images/backgrounds/starting-color.jpeg');
