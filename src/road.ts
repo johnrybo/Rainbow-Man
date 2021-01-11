@@ -4,7 +4,7 @@ class Road {
     draw() {
         push()
         imageMode(CORNER);
-        image(backgroundLevel6, 0, 0, width, height);
+        image(backgroundLevel1, 0, 0, width, height);
         fill('lightgrey');
         noStroke();
         
