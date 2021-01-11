@@ -13,11 +13,11 @@ class MainMenu {
 
     update() {
         this.addStartBtn();
-        /*
+        
         if(mouseIsPressed){
             this.game.gameState = "play"
+            song.loop();
         }
-        */
  
     }
 

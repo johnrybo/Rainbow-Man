@@ -35,13 +35,14 @@ class GameController {
     }
 
     draw() {
+        push();
         this.road.draw(this.level.getLevelBackground());
         for (const wall of this.walls) {
             wall.draw();
         }
         this.character.draw();
         this.highScore.draw();
-    }
+        pop();    }
 
     private addWall() {
         this.walls.push(new Wall(this.level.getWallSectionCount(), this.level.getColors(), this.level.getTempo()));
@@ -132,13 +133,14 @@ class GameController {
 
             if (this.character.characterColor !== collidedWallSection.color) {
                 noLoop();
-                // gameOverSound.setVolume(0.3);
-                // gameOverSound.play();
-                // song.stop();
+                gameOverSound.setVolume(0.3);
+                gameOverSound.play();
+                song.stop();
             } else {
                 this.updateHighScore();
                 this.walls.shift();
                 this.updateColor();
+                collisionSound.play();
             }
 
         }
@@ -148,6 +150,8 @@ class GameController {
     private updateColor() {
 
         let characterImgColors = [characterImgRed, characterImgGreen, characterImgBlue];
+        this.character.characterImg = random(characterImgColors)
+        this.character.matchColors();
 
         if (this.highScore.score == 3) {
 
@@ -191,24 +195,23 @@ class GameController {
     // Uppdaterar score baserat på antal väggar som har passerat gubben
     private updateHighScore() {
 
-        for (const wall of this.walls) {
-            if (this.character.y < wall.yWallPosition) {
+        // for (const wall of this.walls) {
+            if (this.character.y < this.walls[0].yWallPosition) {
 
                 if (!this.previousCollision) {
                     this.highScore.score++
-                    // collisionSound.play();
                     if (this.highScore.score > this.highScore.highScoreLS) {
                         this.highScore.highScoreLS = this.highScore.score;
                         storeItem('highScore', this.highScore.highScoreLS);
                     }
                 }
                 this.previousCollision = true;
-                break;
+                // break;
 
             } else {
                 this.previousCollision = false;
-                break;
+                // break;
             }
-        }
+        // }
     }
 }

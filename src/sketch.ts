@@ -18,12 +18,10 @@ let backgroundLevel5: p5.Image;
 let backgroundLevel6: p5.Image;
 let backgroundLevel7: p5.Image;
 
-/*
 let song: p5.SoundFile;
 let collisionSound: p5.SoundFile;
 let itemsSound: p5.SoundFile;
 let gameOverSound: p5.SoundFile;
-*/
 
 /**
  * Built in preload function in P5
@@ -34,9 +32,6 @@ function preload() {
     // Tyvärr har jag inte fått till den globala typningen för
     // inladdningen av ljud men fungerar bra enligt nedan..
     // sound = (window as any).loadSound('../assets/mySound.wav');
-
-    // const xmlData = loadXML('../assets/images/rainbowMan.svg');
-    // characterImg = loadImage(xmlData as any)
 
     characterImgGreen = loadImage('../assets/images/rainbowManGreen.svg');
     characterImgRed = loadImage('../assets/images/rainbowManRed.svg');
@@ -57,12 +52,10 @@ function preload() {
     backgroundLevel7 = loadImage('../assets/images/backgrounds/green.jpeg');
     backgroundLevel7 = loadImage('../assets/images/backgrounds/yellow.jpeg');
 
-    /*
-    song = (window as any).loadSound('../assets/music/rainbowMan.wav');
+    song = (window as any).loadSound('../assets/music/rainbowMan.mp3');
     collisionSound = (window as any).loadSound('../assets/soundeffects/collision.wav');
     itemsSound = (window as any).loadSound('../assets/soundeffects/items.wav');
     gameOverSound = (window as any).loadSound('../assets/soundeffects/gameOverSound.wav');
-    */
 }
 
 /**
@@ -85,9 +78,10 @@ function setup() {
  * you created in the setup function above
  */
 function draw() {
-
+    push();
     game.update();
     game.draw();
+    pop();
 }
 
 

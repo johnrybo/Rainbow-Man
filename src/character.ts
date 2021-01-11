@@ -16,9 +16,11 @@ class Character {
   update() { }
 
   draw() {
+    push();
     imageMode(CENTER);
     image(this.characterImg, this.x, this.y);
     this.moveCharacter();
+    pop();
   }
 
   // Anger samma färg på characterColor som finns i characterImg
@@ -42,13 +44,13 @@ class Character {
 
   private moveCharacter() {
     if (keyIsPressed) {
-      if (keyCode == LEFT_ARROW && this.x! > 200) {
+      if (keyCode == LEFT_ARROW && this.x! > width * .15) {
         this.x -= this.speed;
       }
     }
 
     if (keyIsPressed) {
-      if (keyCode == RIGHT_ARROW && this.x! < width - 200) {
+      if (keyCode == RIGHT_ARROW && this.x! < width * .85) {
         this.x += this.speed;
       }
     }
