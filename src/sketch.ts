@@ -8,6 +8,7 @@ let characterImgIndigo: p5.Image;
 let characterImgViolet: p5.Image;
 let characterImgOrange: p5.Image;
 let rainbowImg: p5.Image;
+let controlsImg: p5.Image;
 let backgroundLevel1: p5.Image;
 let backgroundLevel2: p5.Image;
 let backgroundLevel3: p5.Image;
@@ -33,6 +34,7 @@ function preload() {
     // const xmlData = loadXML('../assets/images/rainbowMan.svg');
     // characterImg = loadImage(xmlData as any)
 
+    // Character
     characterImgGreen = loadImage('../assets/images/rainbowManGreen.svg');
     characterImgRed = loadImage('../assets/images/rainbowManRed.svg');
     characterImgBlue = loadImage('../assets/images/rainbowManBlue.svg');
@@ -41,8 +43,13 @@ function preload() {
     characterImgViolet = loadImage('../assets/images/rainbowManViolet.svg');
     characterImgOrange = loadImage('../assets/images/rainbowManOrange.svg');
 
-    rainbowImg = loadImage('../assets/images/rainbow.png')
+    // RainBow - MainMenu
+    rainbowImg = loadImage('../assets/images/rainbow.png');
 
+    // Controls - MainMenu
+    controlsImg = loadImage('../assets/images/controls.png');
+
+    // Backgrounds - Game
     backgroundLevel1 = loadImage('../assets/images/backgrounds/starting-background.jpeg');
     backgroundLevel2 = loadImage('../assets/images/backgrounds/starting-color.jpeg');
     backgroundLevel3 = loadImage('../assets/images/backgrounds/lightblue.jpeg');
@@ -51,6 +58,9 @@ function preload() {
     backgroundLevel6 = loadImage('../assets/images/backgrounds/darkblue.jpeg');
     backgroundLevel7 = loadImage('../assets/images/backgrounds/green.jpeg');
     backgroundLevel7 = loadImage('../assets/images/backgrounds/yellow.jpeg');
+
+   
+
 
     song = (window as any).loadSound('../assets/music/rainbowMan.wav');
     collisionSound = (window as any).loadSound('../assets/soundeffects/collision.wav');
@@ -70,6 +80,7 @@ function setup() {
     // noCursor();
 
     game = new Game();
+    noLoop();
 }
 
 /**
