@@ -7,6 +7,7 @@ class GameController {
     private previousCollision: boolean;
     private levelFactory: LevelFactory;
     private level: Level;
+    private nextWallTimer: number;
 
     constructor() { // Ta emot levelData från Level
         this.road = new Road();
@@ -16,9 +17,9 @@ class GameController {
         this.levelFactory = new LevelFactory();
         this.level = this.levelFactory.getLevel(1);
         this.previousCollision = false;
+        this.nextWallTimer = 0;
 
         this.addWall();
-        setInterval(() => this.addWall(), this.level.getWallInterval());
     }
 
     update() {
@@ -32,6 +33,13 @@ class GameController {
         this.checkWallCollision();
         this.updateHighScore();
         this.levelUp();
+
+        if (this.nextWallTimer > this.level.getWallInterval()) {
+            this.nextWallTimer = 0;
+            this.addWall();
+        }
+
+        this.nextWallTimer += deltaTime
     }
 
     draw() {
@@ -63,89 +71,37 @@ class GameController {
     private checkWallCollision() {
 
         const currentWall = this.walls[0];
-        const halfCharacterWidth = this.character.characterWidth / 2;
+        // const halfCharacterWidth = this.character.characterWidth / 2;
 
         // Kollision har skett
         if (this.character.y < currentWall.yWallPosition) {
 
-            let collidedWallSection: WallSection;
+            let collidedWallSection: WallSection | undefined;
 
-            // ta ut vilken färg på vilken x position krock skett på
-            switch (true) {
-                // krock med vägg 3 - sektion 1
-                case this.character.x + halfCharacterWidth < currentWall.wallSections[1].xPosition:
-                    collidedWallSection = currentWall.wallSections[0];
-                    break;
-                // krock med vägg 3 - sektion 2
-                case this.character.x - halfCharacterWidth > currentWall.wallSections[1].xPosition &&
-                    this.character.x + halfCharacterWidth < currentWall.wallSections[2].xPosition:
-                    collidedWallSection = currentWall.wallSections[1];
-                    break;
-                // krock med vägg 3 - sektion 3
-                case this.character.x - halfCharacterWidth > currentWall.wallSections[2].xPosition:
-                    collidedWallSection = currentWall.wallSections[2];
-                    break;
+            const wallSectionWidth = currentWall.wallWidth / currentWall.wallSections.length;
+            const characterLeft = this.character.x - this.character.characterWidth / 2;
+            const characterRight = this.character.x + this.character.characterWidth / 2;
 
-                // krock med vägg 3 - sektion 4-7
-                case currentWall.totalSections >= 4 && this.character.x - halfCharacterWidth > currentWall.wallSections[2].xPosition && this.character.x + halfCharacterWidth < currentWall.wallSections[3].xPosition:
-                    collidedWallSection = currentWall.wallSections[2];
-                    break;
-
-                // krock med vägg 4 - sektion 4
-                case currentWall.totalSections == 4 && this.character.x > currentWall.wallSections[3].xPosition:
-                    collidedWallSection = currentWall.wallSections[3];
-                    break;
-
-                // krock med vägg 5 - sektion 4
-                case currentWall.totalSections == 5 && this.character.x > currentWall.wallSections[3].xPosition && this.character.x < currentWall.wallSections[4].xPosition:
-                    collidedWallSection = currentWall.wallSections[3];
-                    break;
-                // krock med vägg 5 - sektion 5
-                case currentWall.totalSections == 5 && this.character.x > currentWall.wallSections[4].xPosition:
-                    collidedWallSection = currentWall.wallSections[4];
-                    break;
-
-                // krock med vägg 6 - sektion 4
-                case currentWall.totalSections == 6 && this.character.x > currentWall.wallSections[3].xPosition && this.character.x < currentWall.wallSections[4].xPosition:
-                    collidedWallSection = currentWall.wallSections[3];
-                    break;
-                // krock med vägg 6 - sektion 5
-                case currentWall.totalSections == 6 && this.character.x > currentWall.wallSections[4].xPosition && this.character.x < currentWall.wallSections[5].xPosition:
-                    collidedWallSection = currentWall.wallSections[4];
-                    break;
-                // krock med vägg 6 - sektion 6
-                case currentWall.totalSections == 6 && this.character.x > currentWall.wallSections[5].xPosition:
-                    collidedWallSection = currentWall.wallSections[5];
-                    break;
-
-                // krock med vägg 7 -sektion 4
-                case currentWall.totalSections == 7 && this.character.x > currentWall.wallSections[3].xPosition && this.character.x < currentWall.wallSections[4].xPosition:
-                    collidedWallSection = currentWall.wallSections[3];
-                    break;
-                // krock med vägg 7 - sektion 5
-                case currentWall.totalSections == 7 && this.character.x > currentWall.wallSections[4].xPosition && this.character.x < currentWall.wallSections[5].xPosition:
-                    collidedWallSection = currentWall.wallSections[4];
-                    break;
-                // krock med vägg 7 - sektion 6
-                case currentWall.totalSections == 7 && this.character.x > currentWall.wallSections[5].xPosition && this.character.x < currentWall.wallSections[6].xPosition:
-                    collidedWallSection = currentWall.wallSections[5];
-                    break;
-                // krock med vägg 7 - sektion 7
-                case currentWall.totalSections == 7 && this.character.x > currentWall.wallSections[6].xPosition:
-                    collidedWallSection = currentWall.wallSections[6];
-                    break;
-
-                // krock med vägg 3 - sektion 3
-                default:
-                   collidedWallSection = currentWall.wallSections[7];
-                    break;
+            for (const wallSection of currentWall.wallSections) {
+                if (
+                    characterLeft > wallSection.xPosition &&
+                    characterLeft < wallSection.xPosition + wallSectionWidth &&
+                    characterRight > wallSection.xPosition &&
+                    characterRight < wallSection.xPosition + wallSectionWidth
+                ) {
+                    collidedWallSection = wallSection
+                }
             }
 
-            if (this.character.characterColor !== collidedWallSection.color) {
+            if (!collidedWallSection || this.character.characterColor !== collidedWallSection.color) {
                 noLoop();
                 gameOverSound.setVolume(0.3);
                 gameOverSound.play();
                 song.stop();
+
+                // Undviker att score ökas med 1 även vid krock
+                this.highScore.score = this.highScore.score -1;
+
             } else {
                 this.updateHighScore();
                 this.walls.shift();
@@ -163,25 +119,25 @@ class GameController {
         this.character.characterImg = random(characterImgColors)
         this.character.matchColors();
 
-        if (this.highScore.score == 3) {
+        if (this.highScore.score == 11) {
 
             characterImgColors.push(characterImgYellow);
             this.character.characterImg = random(characterImgColors)
             this.character.matchColors();
 
-        } else if (this.highScore.score == 6) {
+        } else if (this.highScore.score == 31) {
 
             characterImgColors.push(characterImgIndigo);
             this.character.characterImg = random(characterImgColors)
             this.character.matchColors();
 
-        } else if (this.highScore.score == 9) {
+        } else if (this.highScore.score == 51) {
 
             characterImgColors.push(characterImgOrange);
             this.character.characterImg = random(characterImgColors)
             this.character.matchColors();
 
-        } else if (this.highScore.score == 12) {
+        } else if (this.highScore.score == 81) {
 
             characterImgColors.push(characterImgViolet);
             this.character.characterImg = random(characterImgColors)
@@ -191,13 +147,13 @@ class GameController {
 
     private levelUp() {
         const currentLevel = this.level.getCurrentLevel();
-        const scoreNeededForNextLevel = currentLevel;
+        const scoreNeededForNextLevel = currentLevel * 10;
 
-        if (this.highScore.score >= scoreNeededForNextLevel && this.highScore.score < 10) {
+        if (this.highScore.score >= scoreNeededForNextLevel && this.highScore.score < 100) {
             this.level = this.levelFactory.getLevel(currentLevel + 1);
         }
 
-        if (this.highScore.score >= 10) {
+        if (this.highScore.score >= 100) {
             this.level = this.levelFactory.getLevel(currentLevel);
         }
     }
@@ -205,8 +161,8 @@ class GameController {
     // Uppdaterar score baserat på antal väggar som har passerat gubben
     private updateHighScore() {
 
-        // for (const wall of this.walls) {
-            if (this.character.y < this.walls[0].yWallPosition) {
+        for (const wall of this.walls) {
+            if (this.character.y < wall.yWallPosition) {
 
                 if (!this.previousCollision) {
                     this.highScore.score++
@@ -216,12 +172,12 @@ class GameController {
                     }
                 }
                 this.previousCollision = true;
-                // break;
+                break;
 
             } else {
                 this.previousCollision = false;
-                // break;
+                break;
             }
-        // }
+        }
     }
 }

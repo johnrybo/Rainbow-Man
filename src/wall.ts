@@ -11,7 +11,7 @@ class Wall {
         this.totalSections = totalSections;
         this.wallColors = wallColors;
         this.wallSections = this.createWallSections();
-        this.yWallPosition = height * .05;
+        this.yWallPosition = height * .1;
         this.wallWidth = width * .4;
         this.wallHeight = 100;
         this.wallTempo = wallTempo;
@@ -51,7 +51,15 @@ class Wall {
 
     /* Change wall size when moving */
     private changeWallSize() {
-        this.wallWidth += width / 1900
+
+        if (this.wallTempo == 3) {
+            this.wallWidth += width / 440
+        } else if (this.wallTempo == 4) {
+            this.wallWidth += width / 330
+        } else if (this.wallTempo == 5) {
+            this.wallWidth += width / 260
+        }
+        
         if (this.yWallPosition + 1 > height) {
             this.wallWidth = width * .4
         }
