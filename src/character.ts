@@ -4,13 +4,19 @@ class Character {
   private speed: number;
   public characterImg: p5.Image;
   public characterColor: string;
+  public characterWidth: number;
+  public characterHeight: number;
 
   constructor() {
     this.x = width / 2;
     this.y = height - 150;
-    this.speed = 20;
+    this.speed = 10;
     this.characterImg = characterImgRed;
     this.characterColor = 'red';
+    this.characterWidth = 52.59;
+    this.characterHeight = 120.39;
+    // this.characterWidth = 48.2075;
+    // this.characterHeight = 110;
   }
 
   update() { }
@@ -18,7 +24,7 @@ class Character {
   draw() {
     push();
     imageMode(CENTER);
-    image(this.characterImg, this.x, this.y);
+    image(this.characterImg, this.x, this.y, this.characterWidth, this.characterHeight);
     this.moveCharacter();
     pop();
   }

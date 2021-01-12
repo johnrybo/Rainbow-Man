@@ -12,7 +12,7 @@ class Game implements IGameState {
         this.gameController = new GameController();
 
         // level -- gamecontroller
-        this.gameState = "mainmenu";
+        this.gameState = "play";
     }
 
     public update() {

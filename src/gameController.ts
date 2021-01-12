@@ -63,6 +63,7 @@ class GameController {
     private checkWallCollision() {
 
         const currentWall = this.walls[0];
+        const halfCharacterWidth = this.character.characterWidth / 2;
 
         // Kollision har skett
         if (this.character.y < currentWall.yWallPosition) {
@@ -72,13 +73,22 @@ class GameController {
             // ta ut vilken färg på vilken x position krock skett på
             switch (true) {
                 // krock med vägg 3 - sektion 1
-                case this.character.x < currentWall.wallSections[1].xPosition:
+                case this.character.x + halfCharacterWidth < currentWall.wallSections[1].xPosition:
                     collidedWallSection = currentWall.wallSections[0];
                     break;
                 // krock med vägg 3 - sektion 2
-                case this.character.x > currentWall.wallSections[1].xPosition &&
-                    this.character.x < currentWall.wallSections[2].xPosition:
+                case this.character.x - halfCharacterWidth > currentWall.wallSections[1].xPosition &&
+                    this.character.x + halfCharacterWidth < currentWall.wallSections[2].xPosition:
                     collidedWallSection = currentWall.wallSections[1];
+                    break;
+                // krock med vägg 3 - sektion 3
+                case this.character.x - halfCharacterWidth > currentWall.wallSections[2].xPosition:
+                    collidedWallSection = currentWall.wallSections[2];
+                    break;
+
+                // krock med vägg 3 - sektion 4-7
+                case currentWall.totalSections >= 4 && this.character.x - halfCharacterWidth > currentWall.wallSections[2].xPosition && this.character.x + halfCharacterWidth < currentWall.wallSections[3].xPosition:
+                    collidedWallSection = currentWall.wallSections[2];
                     break;
 
                 // krock med vägg 4 - sektion 4
@@ -127,7 +137,7 @@ class GameController {
 
                 // krock med vägg 3 - sektion 3
                 default:
-                    collidedWallSection = currentWall.wallSections[2];
+                   collidedWallSection = currentWall.wallSections[7];
                     break;
             }
 

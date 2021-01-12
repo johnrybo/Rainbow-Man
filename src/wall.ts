@@ -51,7 +51,7 @@ class Wall {
 
     /* Change wall size when moving */
     private changeWallSize() {
-        this.wallWidth += width / 950
+        this.wallWidth += width / 1900
         if (this.yWallPosition + 1 > height) {
             this.wallWidth = width * .4
         }
