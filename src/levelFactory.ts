@@ -14,62 +14,62 @@ class LevelFactory {
         this.levelData = [
             {
                 wallSectionCount: 3,
-                tempo: 6,
-                wallInterval: 1500,
+                tempo: 3,
+                wallInterval: 2000,
                 background: backgroundLevel1,
             },
             {
-                wallSectionCount: 4,
-                tempo: 6,
-                wallInterval: 1500,
+                wallSectionCount: 4,    // 10
+                tempo: 3,
+                wallInterval: 1900,
                 background: backgroundLevel2,
             },
             {
-                wallSectionCount: 4,
-                tempo: 6,
-                wallInterval: 1500,
+                wallSectionCount: 4,    // 20
+                tempo: 4,
+                wallInterval: 1800,
                 background: backgroundLevel3,
             },
             {
-                wallSectionCount: 4,
-                tempo: 7,
-                wallInterval: 1500,
+                wallSectionCount: 5,    // 30
+                tempo: 4,
+                wallInterval: 1700,
                 background: backgroundLevel4,
             },
             {
-                wallSectionCount: 5,
-                tempo: 7,
-                wallInterval: 1500,
+                wallSectionCount: 5,    // 40
+                tempo: 4,
+                wallInterval: 1600,
                 background: backgroundLevel5,
             },
             {
-                wallSectionCount: 5,
-                tempo: 7,
+                wallSectionCount: 6,    // 50
+                tempo: 4,
                 wallInterval: 1500,
                 background: backgroundLevel6,
             },
             {
-                wallSectionCount: 5,
-                tempo: 7,
-                wallInterval: 1500,
+                wallSectionCount: 6,    // 60
+                tempo: 5,
+                wallInterval: 1400,
                 background: backgroundLevel7,
             },
             {
-                wallSectionCount: 6,
-                tempo: 8,
-                wallInterval: 1500,
+                wallSectionCount: 6,    // 70
+                tempo: 5,
+                wallInterval: 1300,
                 background: backgroundLevel1,
             },
             {
-                wallSectionCount: 6,
-                tempo: 8,
-                wallInterval: 1500,
+                wallSectionCount: 7,    // 80
+                tempo: 5,
+                wallInterval: 1200,
                 background: backgroundLevel2,
             },
             {
-                wallSectionCount: 7,
-                tempo: 8,
-                wallInterval: 1500,
+                wallSectionCount: 7,    // 90
+                tempo: 5,
+                wallInterval: 1100,
                 background: backgroundLevel6,
             }
         ];

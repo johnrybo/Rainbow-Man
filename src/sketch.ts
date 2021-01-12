@@ -65,7 +65,8 @@ function preload() {
  * in the draw function below
  */
 function setup() {
-    createCanvas(windowWidth, windowHeight);
+    createCanvas(900, 640);
+    // createCanvas(windowWidth, windowHeight);
     frameRate(60);
     // noCursor();
 
@@ -88,6 +89,9 @@ function draw() {
 /**
  *  Built in windowResize listener function in P5
  */
+
+/*
 function windowResized() {
     resizeCanvas(windowWidth, windowHeight);
 }
+*/
