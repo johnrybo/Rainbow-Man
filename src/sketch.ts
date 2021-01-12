@@ -9,6 +9,7 @@ let characterImgViolet: p5.Image;
 let characterImgOrange: p5.Image;
 
 let rainbowImg: p5.Image;
+let controlsImg: p5.Image;
 
 let backgroundLevel1: p5.Image;
 let backgroundLevel2: p5.Image;
@@ -41,8 +42,13 @@ function preload() {
     characterImgViolet = loadImage('../assets/images/rainbowManViolet.svg');
     characterImgOrange = loadImage('../assets/images/rainbowManOrange.svg');
 
-    rainbowImg = loadImage('../assets/images/rainbow.png')
+    // RainBow - MainMenu
+    rainbowImg = loadImage('../assets/images/rainbow.png');
 
+    // Controls - MainMenu
+    controlsImg = loadImage('../assets/images/controls.png');
+
+    // Backgrounds - Game
     backgroundLevel1 = loadImage('../assets/images/backgrounds/starting-background.jpeg');
     backgroundLevel2 = loadImage('../assets/images/backgrounds/starting-color.jpeg');
     backgroundLevel3 = loadImage('../assets/images/backgrounds/lightblue.jpeg');
@@ -53,6 +59,7 @@ function preload() {
     backgroundLevel7 = loadImage('../assets/images/backgrounds/yellow.jpeg');
 
     song = (window as any).loadSound('../assets/music/rainbowMan.mp3');
+
     collisionSound = (window as any).loadSound('../assets/soundeffects/collision.wav');
     itemsSound = (window as any).loadSound('../assets/soundeffects/items.wav');
     gameOverSound = (window as any).loadSound('../assets/soundeffects/gameOverSound.wav');
@@ -65,11 +72,13 @@ function preload() {
  * in the draw function below
  */
 function setup() {
-    createCanvas(windowWidth, windowHeight);
+    createCanvas(900, 640);
+    // createCanvas(windowWidth, windowHeight);
     frameRate(60);
     // noCursor();
 
     game = new Game();
+    noLoop();
 }
 
 /**
@@ -88,6 +97,9 @@ function draw() {
 /**
  *  Built in windowResize listener function in P5
  */
+
+/*
 function windowResized() {
     resizeCanvas(windowWidth, windowHeight);
 }
+*/

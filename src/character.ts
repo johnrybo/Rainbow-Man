@@ -4,13 +4,17 @@ class Character {
   private speed: number;
   public characterImg: p5.Image;
   public characterColor: string;
+  public characterWidth: number;
+  public characterHeight: number;
 
   constructor() {
     this.x = width / 2;
-    this.y = height - 150;
-    this.speed = 20;
+    this.y = height - 100;
+    this.speed = 10;
     this.characterImg = characterImgRed;
     this.characterColor = 'red';
+    this.characterWidth = 52.59 * .85;
+    this.characterHeight = 120.39 * .85;
   }
 
   update() { }
@@ -18,7 +22,7 @@ class Character {
   draw() {
     push();
     imageMode(CENTER);
-    image(this.characterImg, this.x, this.y);
+    image(this.characterImg, this.x, this.y, this.characterWidth, this.characterHeight);
     this.moveCharacter();
     pop();
   }
@@ -44,13 +48,13 @@ class Character {
 
   private moveCharacter() {
     if (keyIsPressed) {
-      if (keyCode == LEFT_ARROW && this.x! > width * .15) {
+      if (keyCode == LEFT_ARROW && this.x! > width * .17) {
         this.x -= this.speed;
       }
     }
 
     if (keyIsPressed) {
-      if (keyCode == RIGHT_ARROW && this.x! < width * .85) {
+      if (keyCode == RIGHT_ARROW && this.x! < width * .83) {
         this.x += this.speed;
       }
     }
