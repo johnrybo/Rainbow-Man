@@ -1,13 +1,10 @@
 class HighScore {
-
     public score: number;
     public highScoreLS: number;
 
     constructor() {
         this.score = 0;
         this.highScoreLS = 0;
-        
-
     }
 
     update() { }
@@ -30,5 +27,4 @@ class HighScore {
             this.highScoreLS = 0;
         }
     }
-
 }

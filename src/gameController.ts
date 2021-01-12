@@ -3,12 +3,14 @@ class GameController {
     private road: Road;
     private walls: Wall[];
     private character: Character;
-    private highScore: HighScore;
+    public highScore: HighScore;
     private previousCollision: boolean;
     private levelFactory: LevelFactory;
     private level: Level;
+    private game: IGameState
 
-    constructor() { // Ta emot levelData från Level
+    constructor(game: IGameState) {
+        this.game = game;
         this.road = new Road();
         this.walls = [];
         this.character = new Character();
@@ -22,7 +24,6 @@ class GameController {
     }
 
     update() {
-
         for (const wall of this.walls) {
             wall.update();
         }
@@ -132,7 +133,7 @@ class GameController {
             }
 
             if (this.character.characterColor !== collidedWallSection.color) {
-                noLoop();
+                this.game.changeGameState('gameover')
                 gameOverSound.setVolume(0.3);
                 gameOverSound.play();
                 song.stop();
@@ -146,7 +147,7 @@ class GameController {
         }
     }
 
-    // Uppdaterar färgen på gubben utifrån highScore
+    // Uppdaterar färgen på gubben utifrån Score
     private updateColor() {
 
         let characterImgColors = [characterImgRed, characterImgGreen, characterImgBlue];

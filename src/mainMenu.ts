@@ -15,7 +15,7 @@ class MainMenu {
         this.addStartBtn();
         
         if(mouseIsPressed){
-            this.game.gameState = "play"
+            this.game.changeGameState("play")
             song.loop();
         }
  
