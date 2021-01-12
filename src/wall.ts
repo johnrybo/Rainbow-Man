@@ -1,17 +1,20 @@
 class Wall {
     public wallSections: WallSection[];
     public yWallPosition: number;
-    private wallWidth: number;
-    private totalSections: number;
+    public wallWidth: number;
+    public totalSections: number;
     private wallHeight: number;
+    private wallColors: string[];
+    private wallTempo: number;
 
-    constructor(totalSections: number) {
+    constructor(totalSections: number, wallColors: string[], wallTempo: number) {
         this.totalSections = totalSections;
+        this.wallColors = wallColors;
         this.wallSections = this.createWallSections();
-        this.yWallPosition = height * .05;
+        this.yWallPosition = height * .1;
         this.wallWidth = width * .4;
         this.wallHeight = 100;
-        
+        this.wallTempo = wallTempo;
     }
 
     public update() {
@@ -30,9 +33,8 @@ class Wall {
 
     // Create wall sections and add color
     private createWallSections(): WallSection[] {
-        
-        // todo: colors should come from level object
-        const colors = ['red', 'yellow', 'green'];
+
+        const colors = this.wallColors;
         shuffle(colors, true);
 
         const sections = [];
@@ -43,14 +45,21 @@ class Wall {
         return sections;
     }
 
-    /* Move walls */
     private moveWalls() {
-        this.yWallPosition = this.yWallPosition + 1;
+        this.yWallPosition = this.yWallPosition + this.wallTempo;
     }
 
     /* Change wall size when moving */
     private changeWallSize() {
-        this.wallWidth += width / 1900
+
+        if (this.wallTempo == 3) {
+            this.wallWidth += width / 440
+        } else if (this.wallTempo == 4) {
+            this.wallWidth += width / 330
+        } else if (this.wallTempo == 5) {
+            this.wallWidth += width / 260
+        }
+        
         if (this.yWallPosition + 1 > height) {
             this.wallWidth = width * .4
         }

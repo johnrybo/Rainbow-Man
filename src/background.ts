@@ -1,3 +1,4 @@
+/*
 class Background {
     private backgroundImg: p5.Image; 
 
@@ -13,3 +14,4 @@ class Background {
 
     }
 }
+*/

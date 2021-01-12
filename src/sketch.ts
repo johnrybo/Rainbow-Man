@@ -7,8 +7,10 @@ let characterImgYellow: p5.Image;
 let characterImgIndigo: p5.Image;
 let characterImgViolet: p5.Image;
 let characterImgOrange: p5.Image;
+
 let rainbowImg: p5.Image;
 let controlsImg: p5.Image;
+
 let backgroundLevel1: p5.Image;
 let backgroundLevel2: p5.Image;
 let backgroundLevel3: p5.Image;
@@ -21,6 +23,7 @@ let song: p5.SoundFile;
 let collisionSound: p5.SoundFile;
 let itemsSound: p5.SoundFile;
 let gameOverSound: p5.SoundFile;
+
 /**
  * Built in preload function in P5
  * This is a good place to load assets such as
@@ -31,10 +34,6 @@ function preload() {
     // inladdningen av ljud men fungerar bra enligt nedan..
     // sound = (window as any).loadSound('../assets/mySound.wav');
 
-    // const xmlData = loadXML('../assets/images/rainbowMan.svg');
-    // characterImg = loadImage(xmlData as any)
-
-    // Character
     characterImgGreen = loadImage('../assets/images/rainbowManGreen.svg');
     characterImgRed = loadImage('../assets/images/rainbowManRed.svg');
     characterImgBlue = loadImage('../assets/images/rainbowManBlue.svg');
@@ -59,10 +58,8 @@ function preload() {
     backgroundLevel7 = loadImage('../assets/images/backgrounds/green.jpeg');
     backgroundLevel7 = loadImage('../assets/images/backgrounds/yellow.jpeg');
 
-   
+    song = (window as any).loadSound('../assets/music/rainbowMan.mp3');
 
-
-    song = (window as any).loadSound('../assets/music/rainbowMan.wav');
     collisionSound = (window as any).loadSound('../assets/soundeffects/collision.wav');
     itemsSound = (window as any).loadSound('../assets/soundeffects/items.wav');
     gameOverSound = (window as any).loadSound('../assets/soundeffects/gameOverSound.wav');
@@ -75,7 +72,8 @@ function preload() {
  * in the draw function below
  */
 function setup() {
-    createCanvas(windowWidth, windowHeight);
+    createCanvas(900, 640);
+    // createCanvas(windowWidth, windowHeight);
     frameRate(60);
     // noCursor();
 
@@ -89,15 +87,19 @@ function setup() {
  * you created in the setup function above
  */
 function draw() {
-
+    push();
     game.update();
     game.draw();
+    pop();
 }
 
 
 /**
  *  Built in windowResize listener function in P5
  */
+
+/*
 function windowResized() {
     resizeCanvas(windowWidth, windowHeight);
 }
+*/
