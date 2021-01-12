@@ -11,6 +11,7 @@ class MainMenu {
         this.controlsImg = controlsImg;
     }
 
+
     update() { 
         push()
         image(this.mainMenuImg, 0, 0, width, height);

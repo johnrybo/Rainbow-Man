@@ -1,3 +1,4 @@
 interface IGameState {
-    gameState: "mainmenu" | "gameover" | "play";
+
+    changeGameState: (gameState: "mainmenu" | "gameover" | "play") => void;
 }
