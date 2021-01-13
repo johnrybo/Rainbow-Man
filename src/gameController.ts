@@ -122,30 +122,32 @@ class GameController {
     private updateColor() {
 
         let characterImgColors = [characterImgRed, characterImgGreen, characterImgBlue];
-        this.character.characterImg = random(characterImgColors)
-        this.character.matchColors();
 
-        if (this.highScore.score == 11) {
+        if (this.highScore.score > 10 && this.highScore.score < 31) {
 
             characterImgColors.push(characterImgYellow);
             this.character.characterImg = random(characterImgColors)
             this.character.matchColors();
 
-        } else if (this.highScore.score == 31) {
+        } else if (this.highScore.score >= 31 && this.highScore.score < 51) {
 
             characterImgColors.push(characterImgIndigo);
             this.character.characterImg = random(characterImgColors)
             this.character.matchColors();
 
-        } else if (this.highScore.score == 51) {
+        } else if (this.highScore.score >= 51 && this.highScore.score < 81) {
 
             characterImgColors.push(characterImgOrange);
             this.character.characterImg = random(characterImgColors)
             this.character.matchColors();
 
-        } else if (this.highScore.score == 81) {
+        } else if (this.highScore.score >= 81) {
 
             characterImgColors.push(characterImgViolet);
+            this.character.characterImg = random(characterImgColors)
+            this.character.matchColors();
+        } else {
+
             this.character.characterImg = random(characterImgColors)
             this.character.matchColors();
         }
