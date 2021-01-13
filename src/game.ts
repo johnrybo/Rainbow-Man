@@ -3,17 +3,17 @@ class Game implements IGameState {
     private gameOverMenu!: GameOverMenu;
     private countDownToStart: CountDownToStart;
     private gameController: GameController;
-    public gameState: "mainmenu" | "gameover" | "play";
+    public gameState: "mainmenu" | "gameover" | "countdown" | "play";
 
     constructor() {
         this.mainMenu = new MainMenu(this);
-        this.countDownToStart = new CountDownToStart();
+        this.countDownToStart = new CountDownToStart(this);
         this.gameController = new GameController(this);
         
         // Start page
         this.gameState = "mainmenu";
     }
-    public changeGameState(gameState: "mainmenu" | "gameover" | "play") {
+    public changeGameState(gameState: "mainmenu" | "gameover" | "countdown" | "play") {
         this.gameState = gameState
         removeElements()
         if (gameState == 'mainmenu') {
@@ -22,9 +22,9 @@ class Game implements IGameState {
         if (gameState == 'gameover') {
             this.gameOverMenu = new GameOverMenu(this)
         }
-        if (gameState == 'play') {
+        if (gameState == 'countdown') {
+            this.countDownToStart = new CountDownToStart(this)
             this.gameController = new GameController(this);
-
         }  
     }
 
@@ -35,9 +35,11 @@ class Game implements IGameState {
         if (this.gameState === "gameover") {
             this.gameOverMenu.update();
         }
+        if (this.gameState === "countdown") {
+            this.countDownToStart.update();
+        }
         if (this.gameState === "play") {
             this.gameController.update();
-            this.countDownToStart.update();
         }
     }
 
@@ -50,12 +52,13 @@ class Game implements IGameState {
         if (this.gameState === "gameover") {
             this.gameController.draw();
             this.gameOverMenu.draw(this.gameController.highScore.score);
- 
+        }
+        if (this.gameState === "countdown") {
+            this.gameController.draw();
+            this.countDownToStart.draw();
         }
         if (this.gameState === "play") {
             this.gameController.draw();
-
-            // this.countDownToStart.draw();
         }
         pop();
     }
