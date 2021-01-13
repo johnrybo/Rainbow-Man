@@ -101,7 +101,7 @@ class GameController {
 
             if (!collidedWallSection || this.character.characterColor !== collidedWallSection.color) {
                 this.game.changeGameState('gameover')
-                gameOverSound.setVolume(0.3);
+                gameOverSound.setVolume(0.2);
                 gameOverSound.play();
                 song.stop();
 
