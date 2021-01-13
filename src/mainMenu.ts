@@ -4,15 +4,16 @@ class MainMenu {
     private rainbow: p5.Image;
     private controlsImg: p5.Image
     private startButton!: p5.Element;
+    private highScore: HighScore;
     
     constructor(game: IGameState) {
         this.game = game;
         this.mainMenuImg = backgroundLevel1;
         this.rainbow = rainbowImg;
         this.controlsImg = controlsImg;
+        this.highScore = new HighScore();
         this.addStartBtn();
     }
-
 
     update() { 
         push()
@@ -51,11 +52,16 @@ class MainMenu {
     }
 
     private showHighScore() {
-        let highScore = localStorage.getItem('highScore')
+        
+        // Test
+        this.highScore.highScoreLS = Number(localStorage.getItem('highScore'));
+        if (this.highScore.highScoreLS == null) {
+            this.highScore.highScoreLS = 0;
+        }
 
         textAlign(RIGHT, TOP);
         textSize(width / 40);
-        text("Highscore: " + highScore, width - 20, 20);
+        text("Highscore: " + this.highScore.highScoreLS, width - 20, 20);
     }
 
     private showInstructions() {
