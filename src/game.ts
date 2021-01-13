@@ -10,8 +10,8 @@ class Game implements IGameState {
         this.countDownToStart = new CountDownToStart();
         this.gameController = new GameController(this);
         
-        // level -- gamecontroller
-        this.gameState = "play";
+        // Start page
+        this.gameState = "mainmenu";
     }
     public changeGameState(gameState: "mainmenu" | "gameover" | "play") {
         this.gameState = gameState
