@@ -22,8 +22,9 @@ class HighScore {
     }
 
     private getHighScoreFromLS() {
+        
         this.highScoreLS = Number(getItem('highScore'));
-        if (this.highScoreLS === null) {
+        if (this.highScoreLS == null) {
             this.highScoreLS = 0;
         }
     }
