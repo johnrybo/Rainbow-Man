@@ -34,6 +34,8 @@ class MainMenu {
         
         this.startButton.mousePressed(() => {
             this.startGame();
+            song.setVolume(0.7);
+            song.loop();
         })
         
         this.startButton.style('position', 'absolute')

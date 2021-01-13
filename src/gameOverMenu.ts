@@ -44,7 +44,7 @@ class GameOverMenu {
         this.menuButton = createButton('Menu');
         
         this.menuButton.mousePressed(() => this.goToMainMenu())
-
+        
         this.menuButton.style('font-size', '20px');
         this.menuButton.style('width', '150');
         this.menuButton.style('height', '50');
@@ -78,5 +78,7 @@ class GameOverMenu {
 
     private restartGame() {
         this.game.changeGameState('countdown')
+        song.setVolume(0.7);
+        song.loop();
     }
 }
