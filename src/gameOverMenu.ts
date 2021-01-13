@@ -77,6 +77,6 @@ class GameOverMenu {
     }
 
     private restartGame() {
-        this.game.changeGameState('play')
+        this.game.changeGameState('countdown')
     }
 }
