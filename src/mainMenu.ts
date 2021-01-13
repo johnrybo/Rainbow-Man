@@ -53,6 +53,7 @@ class MainMenu {
 
     private showHighScore() {
         
+        // Test
         this.highScore.highScoreLS = Number(localStorage.getItem('highScore'));
         if (this.highScore.highScoreLS == null) {
             this.highScore.highScoreLS = 0;
