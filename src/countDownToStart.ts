@@ -7,12 +7,12 @@ class CountDownToStart {
         this.timer = 3;
     }
 
-    update() { }
-
     draw() {
         this.background()
         this.countDownNumber();
     }
+
+    update(){}
 
     private background() {
         fill(0, 0, 0, 200);

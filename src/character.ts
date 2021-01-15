@@ -17,7 +17,7 @@ class Character {
     this.characterHeight = 120.39 * .85;
   }
 
-  update() { }
+  update(){}
 
   draw() {
     push();

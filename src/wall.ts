@@ -49,13 +49,17 @@ class Wall {
         this.yWallPosition = this.yWallPosition + this.wallTempo;
     }
 
-    /* Change wall size when moving */
+    // Change wall size when moving
     private changeWallSize() {
 
         if (this.wallTempo == 3) {
             this.wallWidth += width / 440
+        } else if (this.wallTempo == 3.5) {
+            this.wallWidth += width / 380
         } else if (this.wallTempo == 4) {
             this.wallWidth += width / 330
+        } else if (this.wallTempo == 4.5) {
+                this.wallWidth += width / 300
         } else if (this.wallTempo == 5) {
             this.wallWidth += width / 260
         }
