@@ -27,7 +27,7 @@ class Character {
     pop();
   }
 
-  // Anger samma färg på characterColor som finns i characterImg
+  // Add color attribute to image.
   public matchColors() {
     if (this.characterImg == characterImgBlue) {
       this.characterColor = 'blue'
@@ -46,6 +46,7 @@ class Character {
     }
   }
 
+  // Move character with left and right arrow.
   private moveCharacter() {
     if (keyIsPressed) {
       if (keyCode == LEFT_ARROW && this.x! > width * .17) {

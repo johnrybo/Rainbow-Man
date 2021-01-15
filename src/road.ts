@@ -1,5 +1,6 @@
 class Road {
 
+    // Handles both road and background.
     draw(backgroundImage: p5.Image) {
         push()
         imageMode(CORNER);

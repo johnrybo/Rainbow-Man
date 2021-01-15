@@ -29,6 +29,7 @@ class MainMenu {
 
     draw() {}
 
+    // Add start-button.
     private addStartBtn() {
         this.startButton = createButton('Start Game');
         
@@ -54,9 +55,8 @@ class MainMenu {
         this.game.changeGameState('countdown');
     }
 
+    // Show highscore.
     private showHighScore() {
-        
-        // Test
         this.highScore.highScoreLS = Number(localStorage.getItem('highScore'));
         if (this.highScore.highScoreLS == null) {
             this.highScore.highScoreLS = 0;
@@ -67,6 +67,7 @@ class MainMenu {
         text("Highscore: " + this.highScore.highScoreLS, width - 20, 20);
     }
 
+    // Show instructions.
     private showInstructions() {
         textAlign(CENTER)
         fill('black')
@@ -74,6 +75,7 @@ class MainMenu {
         text("RainBow Man can only go through the walls with the same color as himself.", width/2, height/2);
     }
 
+    // Show controls.
     private showControls() {
         textAlign(CENTER)
         textSize(width / 40);

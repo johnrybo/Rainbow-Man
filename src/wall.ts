@@ -45,6 +45,7 @@ class Wall {
         return sections;
     }
 
+    // Move wall.
     private moveWalls() {
         this.yWallPosition = this.yWallPosition + this.wallTempo;
     }
