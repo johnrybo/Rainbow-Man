@@ -27,6 +27,8 @@ class MainMenu {
         pop()
     }
 
+    draw() {}
+
     private addStartBtn() {
         this.startButton = createButton('Start Game');
         

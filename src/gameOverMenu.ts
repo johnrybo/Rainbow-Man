@@ -17,6 +17,8 @@ class GameOverMenu {
         pop()
     }
 
+    update(){}
+
     private addBackground() {
         fill(0, 0, 0, 200);
         rect(0, 0, width, height);

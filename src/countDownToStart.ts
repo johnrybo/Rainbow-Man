@@ -12,6 +12,8 @@ class CountDownToStart {
         this.countDownNumber();
     }
 
+    update(){}
+
     private background() {
         fill(0, 0, 0, 200);
         rect(0, 0, width, height);

@@ -17,6 +17,8 @@ class Character {
     this.characterHeight = 120.39 * .85;
   }
 
+  update(){}
+
   draw() {
     push();
     imageMode(CENTER);
