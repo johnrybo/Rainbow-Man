@@ -33,13 +33,13 @@ function preload() {
     // inladdningen av ljud men fungerar bra enligt nedan..
     // sound = (window as any).loadSound('../assets/mySound.wav');
 
-    characterImgGreen = loadImage('../assets/images/rainbowManGreen.svg');
-    characterImgRed = loadImage('../assets/images/rainbowManRed.svg');
-    characterImgBlue = loadImage('../assets/images/rainbowManBlue.svg');
-    characterImgYellow = loadImage('../assets/images/rainbowManYellow.svg');
-    characterImgIndigo = loadImage('../assets/images/rainbowManIndigo.svg');
-    characterImgViolet = loadImage('../assets/images/rainbowManViolet.svg');
-    characterImgOrange = loadImage('../assets/images/rainbowManOrange.svg');
+    characterImgGreen = loadImage('../assets/images/rainbowManGreen.png');
+    characterImgRed = loadImage('../assets/images/rainbowManRed.png');
+    characterImgBlue = loadImage('../assets/images/rainbowManBlue.png');
+    characterImgYellow = loadImage('../assets/images/rainbowManYellow.png');
+    characterImgIndigo = loadImage('../assets/images/rainbowManIndigo.png');
+    characterImgViolet = loadImage('../assets/images/rainbowManViolet.png');
+    characterImgOrange = loadImage('../assets/images/rainbowManOrange.png');
 
     // RainBow - MainMenu
     rainbowImg = loadImage('../assets/images/rainbow.png');
