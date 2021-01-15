@@ -7,8 +7,6 @@ class HighScore {
         this.highScoreLS = 0;
     }
 
-    update() { }
-
     draw() {
         push();
         textSize(width / 40);

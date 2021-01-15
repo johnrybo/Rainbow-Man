@@ -68,12 +68,10 @@ class GameController {
         }
     }
 
-    // Stoppar väggen från att fortsätta röra sig om väggens färg och gubbens färg inte är
-    // samma när de har samma y-position
+    // Anger vad som händer när gubben krockar med en viss väggsektion
     private checkWallCollision() {
 
         const currentWall = this.walls[0];
-        // const halfCharacterWidth = this.character.characterWidth / 2;
 
         // Kollision har skett
         if (this.character.y < currentWall.yWallPosition) {
@@ -93,11 +91,7 @@ class GameController {
                 ) {
                     collidedWallSection = wallSection
                 }
-            }
-
-
-            //if (this.character.characterColor !== collidedWallSection.color) {
-                
+            }                
 
             if (!collidedWallSection || this.character.characterColor !== collidedWallSection.color) {
                 this.game.changeGameState('gameover')
@@ -122,6 +116,8 @@ class GameController {
     private updateColor() {
 
         let characterImgColors = [characterImgRed, characterImgGreen, characterImgBlue];
+        this.character.characterImg = random(characterImgColors)
+        this.character.matchColors();
 
         if (this.highScore.score > 10 && this.highScore.score < 31) {
 
@@ -144,10 +140,6 @@ class GameController {
         } else if (this.highScore.score >= 81) {
 
             characterImgColors.push(characterImgViolet);
-            this.character.characterImg = random(characterImgColors)
-            this.character.matchColors();
-        } else {
-
             this.character.characterImg = random(characterImgColors)
             this.character.matchColors();
         }

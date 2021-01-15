@@ -7,8 +7,6 @@ class CountDownToStart {
         this.timer = 3;
     }
 
-    update() { }
-
     draw() {
         this.background()
         this.countDownNumber();

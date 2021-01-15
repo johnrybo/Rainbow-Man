@@ -26,7 +26,7 @@ class LevelFactory {
             },
             {
                 wallSectionCount: 4,    // 20
-                tempo: 4,
+                tempo: 3.5,
                 wallInterval: 1800,
                 background: backgroundLevel3,
             },
@@ -50,7 +50,7 @@ class LevelFactory {
             },
             {
                 wallSectionCount: 6,    // 60
-                tempo: 5,
+                tempo: 4.5,
                 wallInterval: 1400,
                 background: backgroundLevel7,
             },

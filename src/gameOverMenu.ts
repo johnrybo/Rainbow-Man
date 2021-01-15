@@ -9,8 +9,6 @@ class GameOverMenu {
         this.addRestartButton();
     }
 
-    update() {}
-
     draw(score: number) {
         push()
         this.addBackground();
@@ -60,10 +58,9 @@ class GameOverMenu {
     }
 
     private addRestartButton() {
-        this.restartButton = createButton('Restart');
         
+        this.restartButton = createButton('Restart');
         this.restartButton.mousePressed(() => this.restartGame())
- 
         this.restartButton.style('font-size', '20px');
         this.restartButton.style('width', '150');
         this.restartButton.style('height', '50');
