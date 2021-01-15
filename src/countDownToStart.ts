@@ -19,6 +19,7 @@ class CountDownToStart {
         rect(0, 0, width, height);
     }
 
+    // Count down from 3 - 0
     private countDownNumber() {
         fill('white')
         textAlign(CENTER, CENTER);

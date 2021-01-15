@@ -19,11 +19,13 @@ class GameOverMenu {
 
     update(){}
 
+    // Add background.
     private addBackground() {
         fill(0, 0, 0, 200);
         rect(0, 0, width, height);
     }
 
+    // Add white pop-up window.
     private addPopUp() {
         rectMode(CENTER)
         fill('white')
@@ -31,6 +33,7 @@ class GameOverMenu {
         rect(width/2, height/2 - 80, 400, 400);
     }
 
+    // Add text and score on pop-up.
     private addText(score: number) {
         fill('black');
         textSize(width / 20);
@@ -40,6 +43,7 @@ class GameOverMenu {
         text(score, width/2, height/2 - 80); 
     }
 
+    // Add menu-button.
     private addMenuButton() {
         this.menuButton = createButton('Menu');
         
@@ -59,6 +63,7 @@ class GameOverMenu {
         this.game.changeGameState('mainmenu')
     }
 
+    // Add restart-button.
     private addRestartButton() {
         
         this.restartButton = createButton('Restart');

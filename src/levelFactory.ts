@@ -10,6 +10,7 @@ class LevelFactory {
     public allColors: string[];
 
     constructor() {
+        // Data for all levels.
         this.allColors = ['red', 'blue', 'green', 'yellow', 'indigo', 'orange', 'violet'];
         this.levelData = [
             {
@@ -75,6 +76,7 @@ class LevelFactory {
         ];
     }
 
+    // Send current level to class Level.
     public getLevel(currentLevel: number): Level {
         const data = this.levelData[currentLevel - 1];
         

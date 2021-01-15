@@ -13,6 +13,8 @@ class Game implements IGameState {
         // Start page
         this.gameState = "mainmenu";
     }
+
+    // Remove previous page and create new page. 
     public changeGameState(gameState: "mainmenu" | "gameover" | "countdown" | "play") {
         this.gameState = gameState
         removeElements()
@@ -28,6 +30,7 @@ class Game implements IGameState {
         }  
     }
 
+    // Looks at the state and updates accordingly
     public update() {
         if (this.gameState === "mainmenu") {
             this.mainMenu.update();
@@ -43,7 +46,7 @@ class Game implements IGameState {
         }
     }
 
-    /** Looks at the state and draws accordingly */
+    // Looks at the state and draws accordingly
     public draw() {
         push();
         if (this.gameState === "mainmenu") {
