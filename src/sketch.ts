@@ -21,7 +21,6 @@ let backgroundLevel7: p5.Image;
 
 let song: p5.SoundFile;
 let collisionSound: p5.SoundFile;
-let itemsSound: p5.SoundFile;
 let gameOverSound: p5.SoundFile;
 
 /**
@@ -61,7 +60,6 @@ function preload() {
     song = (window as any).loadSound('../assets/music/rainbowMan.mp3');
 
     collisionSound = (window as any).loadSound('../assets/soundeffects/collision.wav');
-    itemsSound = (window as any).loadSound('../assets/soundeffects/items.wav');
     gameOverSound = (window as any).loadSound('../assets/soundeffects/gameOverSound.wav');
 }
 
