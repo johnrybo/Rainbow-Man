@@ -19,6 +19,7 @@ class WallSection {
         pop();
     }
 
+    // Place wallsections next to each other with Xposition.
     private handleXPosition(parentWidth: number, parentTotalSections: number, index: number) {
         const screenCenter = width / 2;
         const wallSectionWidth = parentWidth / parentTotalSections;

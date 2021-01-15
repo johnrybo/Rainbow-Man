@@ -29,10 +29,7 @@ let gameOverSound: p5.SoundFile;
  * sound files, images etc...
  */
 function preload() {
-    // Tyvärr har jag inte fått till den globala typningen för
-    // inladdningen av ljud men fungerar bra enligt nedan..
-    // sound = (window as any).loadSound('../assets/mySound.wav');
-
+    // Character images.
     characterImgGreen = loadImage('../assets/images/rainbowManGreen.svg');
     characterImgRed = loadImage('../assets/images/rainbowManRed.svg');
     characterImgBlue = loadImage('../assets/images/rainbowManBlue.svg');
@@ -41,10 +38,10 @@ function preload() {
     characterImgViolet = loadImage('../assets/images/rainbowManViolet.svg');
     characterImgOrange = loadImage('../assets/images/rainbowManOrange.svg');
 
-    // RainBow - MainMenu
+    // RainBowLogo - MainMenu
     rainbowImg = loadImage('../assets/images/rainbow.png');
 
-    // Controls - MainMenu
+    // Controls(right/left arrow) - MainMenu
     controlsImg = loadImage('../assets/images/controls.png');
 
     // Backgrounds - Game
@@ -57,6 +54,7 @@ function preload() {
     backgroundLevel7 = loadImage('../assets/images/backgrounds/green.jpeg');
     backgroundLevel7 = loadImage('../assets/images/backgrounds/yellow.jpeg');
 
+    // Sounds
     song = (window as any).loadSound('../assets/music/rainbowMan.mp3');
 
     collisionSound = (window as any).loadSound('../assets/soundeffects/collision.wav');
@@ -71,9 +69,7 @@ function preload() {
  */
 function setup() {
     createCanvas(900, 640);
-    // createCanvas(windowWidth, windowHeight);
     frameRate(60);
-    // noCursor();
 
     game = new Game();
 }
@@ -89,14 +85,3 @@ function draw() {
     game.draw();
     pop();
 }
-
-
-/**
- *  Built in windowResize listener function in P5
- */
-
-/*
-function windowResized() {
-    resizeCanvas(windowWidth, windowHeight);
-}
-*/

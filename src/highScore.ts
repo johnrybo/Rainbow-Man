@@ -19,6 +19,7 @@ class HighScore {
         pop();
     }
 
+    // Get highscore from localstorage.
     private getHighScoreFromLS() {
         
         this.highScoreLS = Number(getItem('highScore'));

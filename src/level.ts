@@ -15,6 +15,7 @@ class Level {
     this.levelBackground = levelBackground;
   }
 
+  // All methods below: Make it possible to get level information.
   public getCurrentLevel() {
     return this.currentLevel;
   }

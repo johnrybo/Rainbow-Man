@@ -54,10 +54,12 @@ class GameController {
         this.highScore.draw();
         pop();    }
 
-    private addWall() {
+        // Add new wall.
+        private addWall() {
         this.walls.push(new Wall(this.level.getWallSectionCount(), this.level.getColors(), this.level.getTempo()));
     }
 
+    // Remove wall if wall Y-position > window height.
     private removeWall() {
         for (const wall of this.walls) {
             if (wall.yWallPosition > height) {
@@ -68,12 +70,12 @@ class GameController {
         }
     }
 
-    // Anger vad som händer när gubben krockar med en viss väggsektion
+    // Decides what's going to happen when the character collides with a specific wallsection.
     private checkWallCollision() {
 
         const currentWall = this.walls[0];
 
-        // Kollision har skett
+        // Collision has happened.
         if (this.character.y < currentWall.yWallPosition) {
 
             let collidedWallSection: WallSection | undefined;
@@ -82,6 +84,7 @@ class GameController {
             const characterLeft = this.character.x - this.character.characterWidth / 2;
             const characterRight = this.character.x + this.character.characterWidth / 2;
 
+            // Check if character is inside wallsection.
             for (const wallSection of currentWall.wallSections) {
                 if (
                     characterLeft > wallSection.xPosition &&
@@ -91,15 +94,16 @@ class GameController {
                 ) {
                     collidedWallSection = wallSection
                 }
-            }                
-
+            } 
+            
+            // End game if character color !== wallsection color.
             if (!collidedWallSection || this.character.characterColor !== collidedWallSection.color) {
                 this.game.changeGameState('gameover')
                 gameOverSound.setVolume(0.2);
                 gameOverSound.play();
                 song.stop();
 
-                // Undviker att score ökas med 1 även vid krock
+                // Prevents score from increasing by 1 when game over.
                 this.highScore.score = this.highScore.score -1;
 
             } else {
@@ -112,7 +116,7 @@ class GameController {
         }
     }
 
-    // Uppdaterar färgen på gubben utifrån Score
+    // Updates character color based on score.
     private updateColor() {
 
         let characterImgColors = [characterImgRed, characterImgGreen, characterImgBlue];
@@ -145,6 +149,7 @@ class GameController {
         }
     }
 
+    // Increase level based on score.
     private levelUp() {
         const currentLevel = this.level.getCurrentLevel();
         const scoreNeededForNextLevel = currentLevel * 10;
@@ -158,7 +163,7 @@ class GameController {
         }
     }
 
-    // Uppdaterar score baserat på antal väggar som har passerat gubben
+    // Increase score with 1 if character enters correct wallsection.
     private updateHighScore() {
 
         for (const wall of this.walls) {
