@@ -4,7 +4,7 @@ John Rybo, Jennifer Tendell, Tony Martinsson, Nisa Tokmak, Daniel Wiik, Marie Wa
 
 Spelet går ut på att klara sig så länge som möjligt genom att styra RainBowMan till den delen av väggen som består av samma färg som sig själv. 
 
-Prova spelet [här](rainbowman.netlify.app/)
+Prova spelet [här](https://rainbowman.netlify.app/)
 Lycka Till!
 
 
