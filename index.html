@@ -1,32 +1,68 @@
 <html>
-    <head>
-        <title>RainBowMan</title>
-        <style>
-            html, body, canvas {
-                height: 100%;
-                width: 100%;
-                margin: 0;
-                background: #272b30;
-                color: white;
-                font-size: 2rem;
-            }
+  <head>
+    <title>RainBowMan</title>
+    <style>
+      html,
+      body,
+      canvas {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        background: #272b30;
+        color: white;
+        font-size: 2rem;
+      }
 
-            body {
-            display: flex;
+      body {
+        display: flex;
+        /* This centers our sketch horizontally. */
+        justify-content: center;
+        /* This centers our sketch vertically. */
+        align-items: center;
+      }
 
-            /* This centers our sketch horizontally. */
-            justify-content: center;
+      .loadingClass {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+      }
 
-            /* This centers our sketch vertically. */
-            align-items: center;
-            }            
-        </style>
+      h1 {
+        font-size: 2rem;
+      }
 
-        <script src="https://cdn.jsdelivr.net/npm/p5@1.1.9/lib/p5.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/p5@1.1.9/lib/addons/p5.sound.js"></script>
-        <script src="build/bundle.js"></script>
-    </head>
-    <body>
-        <!-- Code injected via JavaScript -->
-    </body>
+    </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.1.9/lib/p5.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.1.9/lib/addons/p5.sound.js"></script>
+    <script src="build/bundle.js"></script>
+  </head>
+  <body>
+    <div id="p5_loading" class="loadingclass">
+      <h1>Loading</h1>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="50"
+        height="50"
+        viewBox="0 0 50 50"
+      >
+        <path
+          fill="#fff"
+          d="M25,5A20.14,20.14,0,0,1,45,22.88a2.51,2.51,0,0,0,2.49,2.26h0A2.52,2.52,0,0,0,50,22.33a25.14,25.14,0,0,0-50,0,2.52,2.52,0,0,0,2.5,2.81h0A2.51,2.51,0,0,0,5,22.88,20.14,20.14,0,0,1,25,5Z"
+        >
+          <animateTransform
+            attributeName="transform"
+            type="rotate"
+            from="0 25 25"
+            to="360 25 25"
+            dur="1s"
+            repeatCount="indefinite"
+          />
+        </path>
+      </svg>
+    </div>
+    <!-- Code injected via JavaScript -->
+  </body>
 </html>
